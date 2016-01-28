@@ -7,11 +7,11 @@ const {
 } = mui;
 const ThemeManager = Styles.ThemeManager;
 const styles = {
-  headline: {
-    fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
-    fontWeight: 400,
+  tabbar: {
+    // the following keeps the tab bar floating on the bottom
+    position: 'fixed',
+    bottom: 0,
+    width: '100%'
   },
 };
 
@@ -58,7 +58,7 @@ App = React.createClass({
         </div>
         )
         : (
-           <Tabs>
+           <Tabs style={styles.tabbar}>
              <Tab label="Item One" >
              </Tab>
              <Tab label="Item Two" >
