@@ -1,8 +1,19 @@
 const {
   RaisedButton,
+  Tabs,
+  Tab,
+  Slider,
   Styles
 } = mui;
 const ThemeManager = Styles.ThemeManager;
+const styles = {
+  headline: {
+    fontSize: 24,
+    paddingTop: 16,
+    marginBottom: 12,
+    fontWeight: 400,
+  },
+};
 
 App = React.createClass({
   mixins: [ReactMeteorData],
@@ -46,7 +57,19 @@ App = React.createClass({
             primary={true}/>
         </div>
         )
-      : <div className="message">Click a player to select</div>;
+        : (
+           <Tabs>
+             <Tab label="Item One" >
+             </Tab>
+             <Tab label="Item Two" >
+             </Tab>
+             <Tab
+               label="onActive"
+               route="/home"
+             >
+             </Tab>
+           </Tabs>
+          );
   },
   render() {
     return (
