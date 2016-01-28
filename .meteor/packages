@@ -19,3 +19,5 @@ react
 jsx
 static-html
 markoshust:material-ui
+kadira:react-layout
+kadira:flow-router
