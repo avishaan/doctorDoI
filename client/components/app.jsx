@@ -34,7 +34,7 @@ App = React.createClass({
     return {
       players: Players.find({}, { sort: { score: -1, name: 1 } }).fetch(),
       selectedPlayer: Players.findOne(this.state.selectedPlayerId)
-    }
+    };
   },
   selectPlayer(playerId) {
     this.setState({
@@ -78,11 +78,11 @@ App = React.createClass({
         <div className="logo"></div>
         <h1 className="title">Doc Do I</h1>
         <div className="subtitle">The opinions of our medical professionals</div>
-        <Leaderboard players={this.data.players}
+        <Outcomes players={this.data.players}
           selectedPlayerId={this.state.selectedPlayerId}
           onPlayerSelected={this.selectPlayer} />
         {this.getBottomBar()}
       </div>
-    )
+    );
   }
 });
