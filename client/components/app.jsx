@@ -59,13 +59,14 @@ App = React.createClass({
         )
         : (
            <Tabs style={styles.tabbar}>
-             <Tab label="Item One" >
-             </Tab>
-             <Tab label="Item Two" >
+             <Tab
+               label="New"
+               route="/new"
+             >
              </Tab>
              <Tab
-               label="onActive"
-               route="/home"
+               label="Outcomes"
+               route="/outcomes"
              >
              </Tab>
            </Tabs>
@@ -75,8 +76,8 @@ App = React.createClass({
     return (
       <div className="outer">
         <div className="logo"></div>
-        <h1 className="title">Leaderboard</h1>
-        <div className="subtitle">Select a scientist to give them points</div>
+        <h1 className="title">Doc Do I</h1>
+        <div className="subtitle">The opinions of our medical professionals</div>
         <Leaderboard players={this.data.players}
           selectedPlayerId={this.state.selectedPlayerId}
           onPlayerSelected={this.selectPlayer} />
