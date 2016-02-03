@@ -1,5 +1,5 @@
-FlowRouter.route("/outcomes", {
-  name: 'Outcomes',
+FlowRouter.route("/outcomesList", {
+  name: 'OutcomesList',
   action() {
     ReactLayout.render(App);
   }

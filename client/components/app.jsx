@@ -33,6 +33,7 @@ App = React.createClass({
   getMeteorData() {
     return {
       players: Players.find({}, { sort: { score: -1, name: 1 } }).fetch(),
+      outcomes: Outcomes.find({}).fetch(),
       selectedPlayer: Players.findOne(this.state.selectedPlayerId)
     };
   },
@@ -78,7 +79,8 @@ App = React.createClass({
         <div className="logo"></div>
         <h1 className="title">Doc Do I</h1>
         <div className="subtitle">The opinions of our medical professionals</div>
-        <Outcomes players={this.data.players}
+        <OutcomesList players={this.data.players}
+          outcomes={this.data.outcomes}
           selectedPlayerId={this.state.selectedPlayerId}
           onPlayerSelected={this.selectPlayer} />
         {this.getBottomBar()}

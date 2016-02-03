@@ -5,7 +5,7 @@ const {
   Avatar
 } = mui;
 
-Outcomes = React.createClass({
+OutcomesList = React.createClass({
   propTypes: {
     selectedPlayerId: React.PropTypes.string,
     players: React.PropTypes.array.isRequired,
@@ -14,22 +14,25 @@ Outcomes = React.createClass({
   selectPlayer(playerId) {
     this.props.onPlayerSelected(playerId);
   },
+  selectOutcome(outcomeId) {
+    this.props.onOutcomeSelected(outcomeId);
+  },
   render() {
     return (
       <List>
-      {this.props.players.map((player) => {
+      {this.props.outcomes.map((outcome) => {
         let style = {};
 
-        if (this.props.selectedPlayerId === player._id) {
+        if (this.props.selectedOutcomeId === outcome._id) {
           style['backgroundColor'] = '#eee';
         }
 
         return [
-          <ListItem key={player._id}
-            primaryText={player.name}
-            onClick={this.selectPlayer.bind(this, player._id)}
-            leftAvatar={<Avatar src={'/' + player.name + '.png'}/>}
-            secondaryText={'Current score: ' + player.score}
+          <ListItem key={outcome._id}
+            primaryText={outcome.doctor.name}
+            onClick={this.selectOutcome.bind(this, outcome._id)}
+            leftAvatar={<Avatar src={'/imgs/' + outcome.doctor.image }/>}
+            secondaryText={'Current score: ' + outcome.confidence}
             style={style}/>,
           <ListDivider/>
         ];
