@@ -1,3 +1,5 @@
+let chance = new Chance();
+
 if (Doctors.find().count() === 0) {
   const doctors = [
     {
@@ -27,6 +29,58 @@ if (Doctors.find().count() === 0) {
     Doctors.insert(doctors[i]);
   }
 }
+
+if (Outcomes.find().count() === 0) {
+  let doctors = Doctors.find().fetch();
+  const outcomes = [
+    {
+      doctor: {
+        _id: doctors[0]._id,
+        name: doctors[0].name,
+        background: doctors[0].background,
+        image: doctors[0].image
+      },
+      confidence: chance.integer({min: 10, max: 90}),
+      description: chance.paragraph({sentences: 2}),
+      image: '1.png'
+    }, {
+      doctor: {
+        _id: doctors[1]._id,
+        name: doctors[1].name,
+        background: doctors[1].background,
+        image: doctors[1].image
+      },
+      confidence: chance.integer({min: 10, max: 90}),
+      description: chance.paragraph({sentences: 2}),
+      image: '2.png'
+    }, {
+      doctor: {
+        _id: doctors[2]._id,
+        name: doctors[2].name,
+        background: doctors[2].background,
+        image: doctors[2].image
+      },
+      confidence: chance.integer({min: 10, max: 90}),
+      description: chance.paragraph({sentences: 2}),
+      image: '3.png'
+    }, {
+      doctor: {
+        _id: doctors[3]._id,
+        name: doctors[3].name,
+        background: doctors[3].background,
+        image: doctors[3].image
+      },
+      confidence: chance.integer({min: 10, max: 90}),
+      description: chance.paragraph({sentences: 2}),
+      image: '4.png'
+    }
+  ];
+  for (let i = 0; i < outcomes.length; i++) {
+    Outcomes.insert(outcomes[i]);
+
+  }
+}
+
 if (Players.find().count() === 0) {
   const names = [
     'Ada Lovelace',
