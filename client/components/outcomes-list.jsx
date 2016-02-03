@@ -32,7 +32,7 @@ OutcomesList = React.createClass({
             primaryText={outcome.doctor.name}
             onClick={this.selectOutcome.bind(this, outcome._id)}
             leftAvatar={<Avatar src={'/imgs/' + outcome.doctor.image }/>}
-            secondaryText={'Current score: ' + outcome.confidence}
+            secondaryText={'Estimated Fit: ' + outcome.confidence}
             style={style}/>,
           <ListDivider/>
         ];
