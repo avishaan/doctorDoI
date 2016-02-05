@@ -46,32 +46,20 @@ App = React.createClass({
     Players.update(playerId, {$inc: {score: 5}});
   },
   getBottomBar() {
-    return this.state.selectedPlayerId
-      ? (
-        <div className="details">
-          <div className="name">{this.data.selectedPlayer.name}</div>
-          <RaisedButton
-            onClick={this.addPointsToPlayer.bind(
-              this, this.state.selectedPlayerId)}
-            style={{float: "right"}}
-            label="Add 5 points"
-            primary={true}/>
-        </div>
-        )
-        : (
-           <Tabs style={styles.tabbar}>
-             <Tab
-               label="New"
-               route="/new"
-             >
-             </Tab>
-             <Tab
-               label="Outcomes"
-               route="/outcomes"
-             >
-             </Tab>
-           </Tabs>
-          );
+    return (
+      <Tabs style={styles.tabbar}>
+        <Tab
+          label="New"
+          route="/new"
+        >
+        </Tab>
+        <Tab
+          label="Outcomes"
+          route="/outcomes"
+        >
+        </Tab>
+      </Tabs>
+    );
   },
   render() {
     return (
