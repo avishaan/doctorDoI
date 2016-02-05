@@ -15,15 +15,21 @@ OutcomesList = React.createClass({
   selectOutcome(outcomeId) {
     this.props.onOutcomeSelected(outcomeId);
   },
+  renderOutcomes(){
+    return this.data.outcomes.map((outcome) => {
+      return (
+        <ListItem key={outcome._id}
+          primaryText={outcome.doctor.name}
+          leftAvatar={<Avatar src={'/imgs/' + outcome.doctor.image }/>}
+          secondaryText={'Likelihood of issue: ' + outcome.confidence}
+          />
+      );
+    });
+  },
   render() {
     return (
       <List>
-          <ListItem key={this.data.outcomes[0]._id}
-            primaryText={this.data.outcomes[0].doctor.name}
-            leftAvatar={<Avatar src={'/imgs/' + this.data.outcomes[0].doctor.image }/>}
-            secondaryText={'Likelihood of issue: ' + this.data.outcomes[0].confidence}
-            />,
-          <ListDivider/>
+        {this.renderOutcomes()}
       </List>
     );
   }
