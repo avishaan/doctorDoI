@@ -18,11 +18,14 @@ OutcomesList = React.createClass({
   renderOutcomes(){
     return this.data.outcomes.map((outcome) => {
       return (
-        <ListItem key={outcome._id}
+        <div key={outcome._id}>
+        <ListItem 
           primaryText={outcome.doctor.name}
           leftAvatar={<Avatar src={'/imgs/' + outcome.doctor.image }/>}
           secondaryText={'Likelihood of issue: ' + outcome.confidence}
           />
+          <ListDivider />
+        </div>
       );
     });
   },
