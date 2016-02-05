@@ -1,7 +1,9 @@
 FlowRouter.route("/outcomesList", {
   name: 'OutcomesList',
   action() {
-    ReactLayout.render(App);
+    ReactLayout.render(App, {
+      nav: <Nav />
+    });
   }
 });
 

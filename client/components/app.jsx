@@ -71,7 +71,7 @@ App = React.createClass({
           outcomes={this.data.outcomes}
           selectedPlayerId={this.state.selectedPlayerId}
           onPlayerSelected={this.selectPlayer} />
-        {this.getBottomBar()}
+        {this.props.nav}
       </div>
     );
   }
