@@ -6,13 +6,11 @@ const {
 } = mui;
 
 OutcomesList = React.createClass({
-  propTypes: {
-    selectedPlayerId: React.PropTypes.string,
-    players: React.PropTypes.array.isRequired,
-    onPlayerSelected: React.PropTypes.func
-  },
-  selectPlayer(playerId) {
-    this.props.onPlayerSelected(playerId);
+  mixins: [ReactMeteorData],
+  getMeteorData() {
+    return {
+      outcomes: Outcomes.find({}).fetch()
+    };
   },
   selectOutcome(outcomeId) {
     this.props.onOutcomeSelected(outcomeId);
@@ -20,23 +18,12 @@ OutcomesList = React.createClass({
   render() {
     return (
       <List>
-      {this.props.outcomes.map((outcome) => {
-        let style = {};
-
-        if (this.props.selectedOutcomeId === outcome._id) {
-          style['backgroundColor'] = '#eee';
-        }
-
-        return [
-          <ListItem key={outcome._id}
-            primaryText={outcome.doctor.name}
-            onClick={this.selectOutcome.bind(this, outcome._id)}
-            leftAvatar={<Avatar src={'/imgs/' + outcome.doctor.image }/>}
-            secondaryText={'Likelihood of issue: ' + outcome.confidence}
-            style={style}/>,
+          <ListItem key={this.data.outcomes[0]._id}
+            primaryText={this.data.outcomes[0].doctor.name}
+            leftAvatar={<Avatar src={'/imgs/' + this.data.outcomes[0].doctor.image }/>}
+            secondaryText={'Likelihood of issue: ' + this.data.outcomes[0].confidence}
+            />,
           <ListDivider/>
-        ];
-      })}
       </List>
     );
   }

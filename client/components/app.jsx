@@ -67,10 +67,7 @@ App = React.createClass({
         <div className="logo"></div>
         <h1 className="title">Doc Do I</h1>
         <div className="subtitle">The opinions of our medical professionals</div>
-        <OutcomesList players={this.data.players}
-          outcomes={this.data.outcomes}
-          selectedPlayerId={this.state.selectedPlayerId}
-          onPlayerSelected={this.selectPlayer} />
+        {this.props.content}
         {this.props.nav}
       </div>
     );
