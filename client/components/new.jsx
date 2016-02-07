@@ -16,6 +16,9 @@ const styles = {
 };
 
 New = React.createClass({
+  onAttachTap() {
+    console.log('attach tap');
+  },
   render() {
     return (
       <div>
@@ -27,6 +30,12 @@ New = React.createClass({
           rows={4}
         />
         <RaisedButton label="Submit" primary={true} style={styles.button} />
+        <RaisedButton label="Attach Image"
+          secondary={true}
+          style={styles.button}
+          onTouchEnd={this.onAttachTap}
+          onMouseUp={this.onAttachTap}
+        />
       </div>
     );
   }
