@@ -17,7 +17,12 @@ const styles = {
 
 New = React.createClass({
   onAttachTap() {
-    console.log('attach tap');
+    debugger;
+    MeteorCamera.getPicture({
+      quality: 50
+    }, function(err, data){
+      debugger;
+    });
   },
   render() {
     return (
