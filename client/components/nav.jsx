@@ -9,18 +9,21 @@ const styles = {
 };
 
 Nav = React.createClass({
+  onTabChange(value, e, tab) {
+    if (value == "new") {
+      FlowRouter.go('New');
+    } else {
+      FlowRouter.go('OutcomesList');
+    }
+  },
   render() {
     return (
-      <Tabs style={styles.tabbar}>
+      <Tabs style={styles.tabbar} onChange={this.onTabChange}>
         <Tab
-          label="New"
-          route="/new"
-        >
+          label="New" route="/new" value="new" >
         </Tab>
         <Tab
-          label="Outcomes"
-          route="/outcomes"
-        >
+          label="Outcomes" route="/outcomes" value="outcomes" >
         </Tab>
       </Tabs>
     );
