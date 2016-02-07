@@ -1,4 +1,4 @@
-FlowRouter.route("/new", {
+FlowRouter.route("/", {
   name: 'New',
   action() {
     ReactLayout.render(App, {
