@@ -2,7 +2,7 @@ FlowRouter.route("/new", {
   name: 'New',
   action() {
     ReactLayout.render(App, {
-      content: <h1>New Page</h1>,
+      content: <New />,
       nav: <Nav />
     });
   }
