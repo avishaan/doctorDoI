@@ -12,6 +12,12 @@ const styles = {
   button: {
     margin: "0, auto",
     display: "block"
+  },
+  image: {
+    display: "block",
+    width: 300,
+    height: 300,
+    margin: "0 auto"
   }
 };
 
@@ -41,6 +47,9 @@ New = React.createClass({
           onTouchEnd={this.onAttachTap}
           onMouseUp={this.onAttachTap}
         />
+        <Paper style={styles.image} zDepth={1} rounded={true} >
+          <img src="/imgs/paperCut.jpg" className="symptomImage" />
+        </Paper>
       </div>
     );
   }
