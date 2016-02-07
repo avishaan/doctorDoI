@@ -19,7 +19,7 @@ App = React.createClass({
   mixins: [ReactMeteorData],
   getInitialState: function () {
     return {
-      selectedPlayerId: null  
+      selectedPlayerId: null
     };
   },
   childContextTypes: {
@@ -37,41 +37,14 @@ App = React.createClass({
       selectedPlayer: Players.findOne(this.state.selectedPlayerId)
     };
   },
-  selectPlayer(playerId) {
-    this.setState({
-      selectedPlayerId: playerId
-    });
-  },
-  addPointsToPlayer(playerId) {
-    Players.update(playerId, {$inc: {score: 5}});
-  },
-  getBottomBar() {
-    return (
-      <Tabs style={styles.tabbar}>
-        <Tab
-          label="New"
-          route="/new"
-        >
-        </Tab>
-        <Tab
-          label="Outcomes"
-          route="/outcomes"
-        >
-        </Tab>
-      </Tabs>
-    );
-  },
   render() {
     return (
       <div className="outer">
         <div className="logo"></div>
         <h1 className="title">Doc Do I</h1>
         <div className="subtitle">The opinions of our medical professionals</div>
-        <OutcomesList players={this.data.players}
-          outcomes={this.data.outcomes}
-          selectedPlayerId={this.state.selectedPlayerId}
-          onPlayerSelected={this.selectPlayer} />
-        {this.getBottomBar()}
+        {this.props.content}
+        {this.props.nav}
       </div>
     );
   }
