@@ -1,21 +1,25 @@
 const {
-  TextField
+  TextField,
+  Divider,
+  Paper
 } = mui;
 
+const styles = {
+  textfield: {
+    marginLeft: 20
+  }
+};
+
 New = React.createClass({
-  mixins: [ReactMeteorData],
-  getMeteorData() {
-    return {
-      outcomes: Outcomes.find({}).fetch()
-    };
-  },
   render() {
     return (
-      <div>
-        <TextField
-          hintText="Hint Text"
-        />
-      </div>
+      <TextField
+        hintText="Tell us what ails you"
+        floatingLabelText="Description of symptoms"
+        multiLine={true}
+        fullWidth={true}
+        rows={4}
+      />
     );
   }
 });
