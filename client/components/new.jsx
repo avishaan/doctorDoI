@@ -31,11 +31,11 @@ New = React.createClass({
   },
   onAttachTap() {
     imageSrc = "/imgs/1.png";
-    debugger;
     MeteorCamera.getPicture({
       quality: 50
     }, function(err, data){
       if(!err) {
+        // attach back into the dom
         imageSrc = data;
       } else {
         console.log(err);
