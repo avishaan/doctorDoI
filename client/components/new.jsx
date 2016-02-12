@@ -29,6 +29,12 @@ New = React.createClass({
       imageSrc: "/imgs/paperCut.jpg"
     };
   },
+  onSubmitTap() {
+    // submit button tapped, put into new outcomes/diagnosis
+    Outcomes.insert({
+      image: this.state.imageSrc
+    });
+  },
   onAttachTap() {
     var that = this;
     MeteorCamera.getPicture({
@@ -53,7 +59,12 @@ New = React.createClass({
           fullWidth={true}
           rows={4}
         />
-        <RaisedButton label="Submit" primary={true} style={styles.button} />
+        <RaisedButton label="Submit"
+          primary={true}
+          style={styles.button}
+          onTouchEnd={this.onSubmitTap}
+          onMouseUp={this.onSubmitTap}
+        />
         <RaisedButton label="Attach Image"
           secondary={true}
           style={styles.button}
