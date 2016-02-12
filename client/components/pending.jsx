@@ -22,7 +22,7 @@ Pending = React.createClass({
           <div key={outcome._id}>
           <ListItem 
             primaryText={outcome.doctor.name}
-            leftAvatar={<Avatar src={outcome.img}/>}
+            leftAvatar={<Avatar src={outcome.image}/>}
             secondaryText={'Likelihood of issue: ' + outcome.confidence}
             />
             <ListDivider />
