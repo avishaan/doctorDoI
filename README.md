@@ -7,3 +7,6 @@ This is an example of building the leaderboard app using React and the [Material
 ### Using material-ui package
 
 We are using the [markoshust:material-ui](https://atmospherejs.com/markoshust/material-ui) package, which uses `material-ui` React component library from NPM.
+
+### TODO
+-[ ] Add react component whose image data element can be updated with a tag, use state to keep track of this, or just change the dom element letting the user know the image is attached, that would be much easier

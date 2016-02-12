@@ -12,12 +12,36 @@ const styles = {
   button: {
     margin: "0, auto",
     display: "block"
+  },
+  image: {
+    display: "block",
+    width: 300,
+    height: 300,
+    margin: "0 auto"
   }
 };
 
+
 New = React.createClass({
+  getInitialState() {
+    // this will set init state, used only for UI updates
+    return {
+      imageSrc: "/imgs/paperCut.jpg"
+    };
+  },
   onAttachTap() {
-    console.log('attach tap');
+    var that = this;
+    MeteorCamera.getPicture({
+      quality: 50
+    }, function(err, data){
+      if(!err) {
+        // attach back into the dom
+        that.setState({'imageSrc': data});
+        //imageSrc = data;
+      } else {
+        console.log(err);
+      }
+    });
   },
   render() {
     return (
@@ -36,6 +60,9 @@ New = React.createClass({
           onTouchEnd={this.onAttachTap}
           onMouseUp={this.onAttachTap}
         />
+        <Paper style={styles.image} zDepth={1} rounded={true} >
+          <img src={this.state.imageSrc} className="symptomImage" />
+        </Paper>
       </div>
     );
   }
