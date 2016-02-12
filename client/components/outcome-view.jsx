@@ -25,7 +25,6 @@ const styles = {
 OutcomeView = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
-    debugger;
     return {
       outcome: Outcomes.find({_id: this.props.oid }).fetch()
     };

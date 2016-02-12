@@ -15,14 +15,19 @@ Pending = React.createClass({
   selectOutcome(outcomeId) {
     this.props.onOutcomeSelected(outcomeId);
   },
+  onOutcomeTap(e) {
+    FlowRouter.go('OutcomeView', {oid: 1});
+  },
   renderOutcomes(){
+    var self = this;
     return this.data.outcomes.map((outcome) => {
         return (
           <div key={outcome._id}>
           <ListItem 
             primaryText={outcome.description}
-            leftAvatar={<Avatar src={outcome.image}/>}
+            onTouchTap={this.onOutcomeTap}
             secondaryText={'Number of responses: ' + outcome.numResponses}
+            leftAvatar={<Avatar src={outcome.image}/>}
             />
             <ListDivider />
           </div>
