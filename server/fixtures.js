@@ -1,6 +1,7 @@
 let chance = new Chance();
 
 if (Doctors.find().count() === 0) {
+  console.log("seeding doctors");
   const doctors = [
     {
       name: 'Jamison Feramisco',
@@ -31,6 +32,7 @@ if (Doctors.find().count() === 0) {
 }
 
 if (Outcomes.find().count() === 0) {
+  console.log("seeding outcomes");
   let doctors = Doctors.find().fetch();
   const outcomes = [
     {
@@ -42,7 +44,8 @@ if (Outcomes.find().count() === 0) {
       },
       confidence: chance.integer({min: 10, max: 90}),
       description: chance.paragraph({sentences: 2}),
-      image: '1.png'
+      image: '1.png',
+      numResponses: 1
     }, {
       doctor: {
         _id: doctors[1]._id,
@@ -52,7 +55,8 @@ if (Outcomes.find().count() === 0) {
       },
       confidence: chance.integer({min: 10, max: 90}),
       description: chance.paragraph({sentences: 2}),
-      image: '2.png'
+      image: '2.png',
+      numResponses: 1
     }, {
       doctor: {
         _id: doctors[2]._id,
@@ -62,7 +66,8 @@ if (Outcomes.find().count() === 0) {
       },
       confidence: chance.integer({min: 10, max: 90}),
       description: chance.paragraph({sentences: 2}),
-      image: '3.png'
+      image: '3.png',
+      numResponses: 0
     }, {
       doctor: {
         _id: doctors[3]._id,
@@ -72,7 +77,8 @@ if (Outcomes.find().count() === 0) {
       },
       confidence: chance.integer({min: 10, max: 90}),
       description: chance.paragraph({sentences: 2}),
-      image: '4.png'
+      image: '4.png',
+      numResponses: 0
     }
   ];
   for (let i = 0; i < outcomes.length; i++) {
