@@ -46,7 +46,7 @@ if (Outcomes.find().count() === 0) {
       },
       confidence: chance.integer({min: 10, max: 90}),
       description: chance.paragraph({sentences: 2}),
-      image: '1.png',
+      image: '/imgs/1.png',
       numResponses: 1
     }, {
       doctor: {
@@ -57,7 +57,7 @@ if (Outcomes.find().count() === 0) {
       },
       confidence: chance.integer({min: 10, max: 90}),
       description: chance.paragraph({sentences: 2}),
-      image: '2.png',
+      image: '/imgs/2.png',
       numResponses: 1
     }, {
       doctor: {
@@ -68,7 +68,7 @@ if (Outcomes.find().count() === 0) {
       },
       confidence: chance.integer({min: 10, max: 90}),
       description: chance.paragraph({sentences: 2}),
-      image: '3.png',
+      image: '/imgs/3.png',
       numResponses: 0
     }, {
       doctor: {
