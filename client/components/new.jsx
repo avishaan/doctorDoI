@@ -21,22 +21,23 @@ const styles = {
   }
 };
 
-var imageSrc = "/imgs/paperCut.jpg"
 
 New = React.createClass({
   getInitialState() {
+    // this will set init state, used only for UI updates
     return {
-      imageSubmit: "/imgs/paperCut.jpg"
-    }
+      imageSrc: "/imgs/paperCut.jpg"
+    };
   },
   onAttachTap() {
-    imageSrc = "/imgs/1.png";
+    var that = this;
     MeteorCamera.getPicture({
       quality: 50
     }, function(err, data){
       if(!err) {
         // attach back into the dom
-        imageSrc = data;
+        that.setState({'imageSrc': data});
+        //imageSrc = data;
       } else {
         console.log(err);
       }
@@ -60,7 +61,7 @@ New = React.createClass({
           onMouseUp={this.onAttachTap}
         />
         <Paper style={styles.image} zDepth={1} rounded={true} >
-          <img src={imageSrc} className="symptomImage" />
+          <img src={this.state.imageSrc} className="symptomImage" />
         </Paper>
       </div>
     );
