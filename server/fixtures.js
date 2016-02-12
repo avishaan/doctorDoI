@@ -6,23 +6,23 @@ if (Doctors.find().count() === 0) {
     {
       name: 'Jamison Feramisco',
       background: 'Cardiac Surgeon for 10 years',
-      image: '1.png'
+      image: '/imgs/1.png'
     }, {
       name: 'Kristy Swanson',
       background: 'Pediatric Surgeon for 3 years',
-      image: '2.png'
+      image: '/imgs/2.png'
     }, {
       name: 'Bruce French',
       background: 'Orthopedic Surgeon for 5 years',
-      image: '3.png'
+      image: '/imgs/3.png'
     }, {
       name: 'Neil Phillip',
       background: 'Radiology Surgeon for 7 years',
-      image: '4.png'
+      image: '/imgs/4.png'
     }, {
       name: 'Ervin Mathis',
       background: 'Emergency Medicine for 2 years',
-      image: '5.png'
+      image: '/imgs/5.png'
     }
   ];
 
