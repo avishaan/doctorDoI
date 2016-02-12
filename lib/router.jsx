@@ -8,6 +8,16 @@ FlowRouter.route("/", {
   }
 });
 
+FlowRouter.route("/pending", {
+  name: 'Pending',
+  action() {
+    ReactLayout.render(App, {
+      content: <Pending />,
+      nav: <Nav />
+    });
+  }
+});
+
 FlowRouter.route("/outcomesList", {
   name: 'OutcomesList',
   action() {
