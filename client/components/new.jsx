@@ -21,13 +21,25 @@ const styles = {
   }
 };
 
+var imageSrc = "/imgs/paperCut.jpg"
+
 New = React.createClass({
+  getInitialState() {
+    return {
+      imageSubmit: "/imgs/paperCut.jpg"
+    }
+  },
   onAttachTap() {
+    imageSrc = "/imgs/1.png";
     debugger;
     MeteorCamera.getPicture({
       quality: 50
     }, function(err, data){
-      debugger;
+      if(!err) {
+        imageSrc = data;
+      } else {
+        console.log(err);
+      }
     });
   },
   render() {
@@ -48,7 +60,7 @@ New = React.createClass({
           onMouseUp={this.onAttachTap}
         />
         <Paper style={styles.image} zDepth={1} rounded={true} >
-          <img src="/imgs/paperCut.jpg" className="symptomImage" />
+          <img src={imageSrc} className="symptomImage" />
         </Paper>
       </div>
     );
