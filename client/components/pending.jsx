@@ -17,20 +17,16 @@ Pending = React.createClass({
   },
   renderOutcomes(){
     return this.data.outcomes.map((outcome) => {
-      if (outcome.doctor){
         return (
           <div key={outcome._id}>
           <ListItem 
-            primaryText={outcome.doctor.name}
+            primaryText={outcome.description}
             leftAvatar={<Avatar src={outcome.image}/>}
-            secondaryText={'Likelihood of issue: ' + outcome.confidence}
+            secondaryText={'Number of responses: ' + outcome.numResponses}
             />
             <ListDivider />
           </div>
         );
-      } else {
-        return;
-      }
     });
   },
   render() {
