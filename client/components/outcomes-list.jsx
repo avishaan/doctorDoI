@@ -17,16 +17,20 @@ OutcomesList = React.createClass({
   },
   renderOutcomes(){
     return this.data.outcomes.map((outcome) => {
-      return (
-        <div key={outcome._id}>
-        <ListItem 
-          primaryText={outcome.doctor.name}
-          leftAvatar={<Avatar src={'/imgs/' + outcome.doctor.image }/>}
-          secondaryText={'Likelihood of issue: ' + outcome.confidence}
-          />
-          <ListDivider />
-        </div>
-      );
+      if (outcome.doctor){
+        return (
+          <div key={outcome._id}>
+          <ListItem 
+            primaryText={outcome.doctor.name}
+            leftAvatar={<Avatar src={'/imgs/' + outcome.doctor.image }/>}
+            secondaryText={'Likelihood of issue: ' + outcome.confidence}
+            />
+            <ListDivider />
+          </div>
+        );
+      } else {
+        return;
+      }
     });
   },
   render() {
