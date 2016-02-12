@@ -5,11 +5,11 @@ const {
   Avatar
 } = mui;
 
-OutcomesList = React.createClass({
+Pending = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
-      outcomes: Outcomes.find({}).fetch()
+      outcomes: Outcomes.find({'numResponses': 0}).fetch()
     };
   },
   selectOutcome(outcomeId) {
@@ -22,7 +22,7 @@ OutcomesList = React.createClass({
           <div key={outcome._id}>
           <ListItem 
             primaryText={outcome.doctor.name}
-            leftAvatar={<Avatar src={ outcome.doctor.image }/>}
+            leftAvatar={<Avatar src={outcome.image}/>}
             secondaryText={'Likelihood of issue: ' + outcome.confidence}
             />
             <ListDivider />
