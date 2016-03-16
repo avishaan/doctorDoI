@@ -16,7 +16,7 @@ const styles = {
   image: {
     display: "block",
     width: 300,
-    height: 300,
+    height: 200,
     margin: "0 auto"
   }
 };
@@ -26,7 +26,7 @@ OutcomeView = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
-      outcome: Outcomes.find({_id: this.props.oid }).fetch()
+      outcome: Outcomes.findOne({_id: this.props.oid })
     };
   },
   getInitialState() {
@@ -36,55 +36,31 @@ OutcomeView = React.createClass({
     };
   },
   onSubmitTap() {
-    // submit button tapped, put into new outcomes/diagnosis
-    Outcomes.insert({
-      image: this.state.imageSrc,
-      description: this.state.description,
-      numResponses: 0
-    });
+
   },
   onDescriptionChange(e) {
     this.setState({description: e.target.value});
-  },
-  onAttachTap() {
-    var that = this;
-    MeteorCamera.getPicture({
-      quality: 50
-    }, function(err, data){
-      if(!err) {
-        // attach back into the dom
-        that.setState({'imageSrc': data});
-      } else {
-        console.log(err);
-      }
-    });
   },
   render() {
     return (
       <div>
         <TextField
-          hintText="Tell us what ails you"
+          hintText={this.data.outcome.description}
           floatingLabelText="Description of symptoms"
           multiLine={true}
           fullWidth={true}
-          value={this.state.description}
+          value={this.data.outcome.description}
           onChange={this.onDescriptionChange}
           rows={4}
         />
-        <RaisedButton label="Submit"
+        <RaisedButton label="Submit Opinion"
           primary={true}
           style={styles.button}
           onTouchEnd={this.onSubmitTap}
           onMouseUp={this.onSubmitTap}
         />
-        <RaisedButton label="Attach Image"
-          secondary={true}
-          style={styles.button}
-          onTouchEnd={this.onAttachTap}
-          onMouseUp={this.onAttachTap}
-        />
         <Paper style={styles.image} zDepth={1} rounded={true} >
-          <img src={this.state.imageSrc} className="symptomImage" />
+          <img src={this.data.outcome.image} className="symptomImage" />
         </Paper>
       </div>
     );
