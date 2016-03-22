@@ -33,10 +33,10 @@ if (Doctors.find().count() === 0) {
   }
 }
 
-if (Outcomes.find().count() === 0) {
-  console.log("seeding outcomes");
+if (Cases.find().count() === 0) {
+  console.log("seeding cases");
   let doctors = Doctors.find().fetch();
-  const outcomes = [
+  const cases = [
     {
       doctor: {
         _id: doctors[0]._id,
@@ -83,8 +83,8 @@ if (Outcomes.find().count() === 0) {
       numResponses: 0
     }
   ];
-  for (let i = 0; i < outcomes.length; i++) {
-    Outcomes.insert(outcomes[i]);
+  for (let i = 0; i < cases.length; i++) {
+    Cases.insert(cases[i]);
 
   }
 }
