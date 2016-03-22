@@ -47,9 +47,9 @@ OutcomeView = React.createClass({
     return (
       <div>
         <CardMedia
-          overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+          overlay={<CardTitle title="" subtitle={this.data.outcome.description}/>}
         >
-          <img src="http://lorempixel.com/600/337/nature/" />
+          <img src={this.data.outcome.image}/>
         </CardMedia>
         <RaisedButton label="Submit Opinion"
           primary={true}
@@ -57,9 +57,6 @@ OutcomeView = React.createClass({
           onTouchEnd={this.onSubmitTap}
           onMouseUp={this.onSubmitTap}
         />
-        <Paper style={styles.image} zDepth={1} rounded={true} >
-          <img src={this.data.outcome.image} className="symptomImage" />
-        </Paper>
       </div>
     );
   }
