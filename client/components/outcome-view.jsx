@@ -51,6 +51,13 @@ OutcomeView = React.createClass({
         >
           <img src={this.data.outcome.image}/>
         </CardMedia>
+        <TextField
+          hintText="Enter your opinion of the diagnostic outcome of what has occured"
+          floatingLabelText="Diagnostic Opinion"
+          multiLine={true}
+          fullWidth={true}
+          rows={3}
+        />
         <RaisedButton label="Submit Opinion"
           primary={true}
           style={styles.button}
