@@ -15,22 +15,26 @@ Pending = React.createClass({
   selectOutcome(outcomeId) {
     this.props.onOutcomeSelected(outcomeId);
   },
+  onOutcomeTap(e) {
+    // TODO this seems like a bad way to do this, we are going way up into the parent of the parent
+    var oid = e.target.parentNode.parentNode.parentNode.getAttribute('value');
+    FlowRouter.go('OutcomeView', {'oid': oid});
+  },
   renderOutcomes(){
+    var self = this;
     return this.data.outcomes.map((outcome) => {
-      if (outcome.doctor){
         return (
           <div key={outcome._id}>
           <ListItem 
-            primaryText={outcome.doctor.name}
+            primaryText={outcome.description}
+            onTouchTap={this.onOutcomeTap}
+            value={outcome._id}
+            secondaryText={'Number of responses: ' + outcome.numResponses}
             leftAvatar={<Avatar src={outcome.image}/>}
-            secondaryText={'Likelihood of issue: ' + outcome.confidence}
             />
             <ListDivider />
           </div>
         );
-      } else {
-        return;
-      }
     });
   },
   render() {

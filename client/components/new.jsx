@@ -33,7 +33,8 @@ New = React.createClass({
     // submit button tapped, put into new outcomes/diagnosis
     Outcomes.insert({
       image: this.state.imageSrc,
-      description: this.state.description
+      description: this.state.description,
+      numResponses: 0
     });
   },
   onDescriptionChange(e) {

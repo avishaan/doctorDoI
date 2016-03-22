@@ -8,6 +8,16 @@ FlowRouter.route("/", {
   }
 });
 
+FlowRouter.route("/pending/:oid", {
+  name: 'OutcomeView',
+  action(params) {
+    ReactLayout.render(App, {
+      content: <OutcomeView oid={params.oid} />,
+      nav: <Nav />
+    });
+  }
+});
+
 FlowRouter.route("/pending", {
   name: 'Pending',
   action() {
