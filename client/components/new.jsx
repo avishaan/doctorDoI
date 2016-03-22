@@ -30,8 +30,8 @@ New = React.createClass({
     };
   },
   onSubmitTap() {
-    // submit button tapped, put into new outcomes/diagnosis
-    Outcomes.insert({
+    // submit button tapped, put into new caseFiles/diagnosis
+    CaseFiles.insert({
       image: this.state.imageSrc,
       description: this.state.description,
       numResponses: 0

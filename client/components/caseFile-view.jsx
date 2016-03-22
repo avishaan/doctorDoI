@@ -24,11 +24,11 @@ const styles = {
 };
 
 
-OutcomeView = React.createClass({
+CaseFileView = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
-      outcome: Outcomes.findOne({_id: this.props.oid })
+      caseFile: CaseFiles.findOne({_id: this.props.oid })
     };
   },
   getInitialState() {
@@ -50,12 +50,12 @@ OutcomeView = React.createClass({
     return (
       <div>
         <CardMedia
-          overlay={<CardTitle title="" subtitle={this.data.outcome.description}/>}
+          overlay={<CardTitle title="" subtitle={this.data.caseFile.description}/>}
         >
-          <img src={this.data.outcome.image}/>
+          <img src={this.data.caseFile.image}/>
         </CardMedia>
         <TextField
-          hintText="Enter your opinion of the diagnostic outcome of what has occured"
+          hintText="Enter your opinion of the diagnosis for what may have occured"
           floatingLabelText="Diagnostic Opinion"
           multiLine={true}
           fullWidth={true}
