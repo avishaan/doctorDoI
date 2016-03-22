@@ -38,7 +38,10 @@ OutcomeView = React.createClass({
     };
   },
   onSubmitTap() {
-
+    // save opinion to database
+    // increment number of attached opinions[]
+    // attach doctor to opinion
+    // route back to list of opinion
   },
   onDescriptionChange(e) {
     this.setState({description: e.target.value});
