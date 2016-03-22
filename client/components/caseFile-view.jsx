@@ -53,9 +53,9 @@ CaseFileView = React.createClass({
         }
       }}
     );
-    // increment number of attached opinions[]
     // attach doctor to opinion
     // route back to list of opinion
+    FlowRouter.go('CaseFilesList');
   },
   onOpinionChange(e) {
     this.setState({opinion: e.target.value});
