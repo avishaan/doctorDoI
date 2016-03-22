@@ -8,11 +8,11 @@ FlowRouter.route("/", {
   }
 });
 
-FlowRouter.route("/pending/:oid", {
-  name: 'OutcomeView',
+FlowRouter.route("/caseFiles/:oid", {
+  name: 'CaseFileView',
   action(params) {
     ReactLayout.render(App, {
-      content: <OutcomeView oid={params.oid} />,
+      content: <CaseFileView oid={params.oid} />,
       nav: <Nav />
     });
   }
