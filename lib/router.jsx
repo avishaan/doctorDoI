@@ -22,7 +22,7 @@ FlowRouter.route("/", {
   name: 'New',
   action() {
     ReactLayout.render(App, {
-      content: <New />,
+      content: <New name="New"/>,
       nav: <Nav />
     });
   }
@@ -52,7 +52,7 @@ FlowRouter.route("/caseFiles", {
   name: 'CaseFilesList',
   action() {
     ReactLayout.render(App, {
-      content: <CaseFilesList />,
+      content: <CaseFilesList name="CaseFilesList"/>,
       nav: <Nav />
     });
   }
