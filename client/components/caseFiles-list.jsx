@@ -15,15 +15,22 @@ CaseFilesList = React.createClass({
   selectCaseFile(caseFileId) {
     this.props.onCaseFileSelected(caseFileId);
   },
+  onListTap(e){
+    //TODO must be a better way to do this
+    var caseFileId = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+    FlowRouter.go('CaseFileView', {'oid': caseFileId}, {});
+  },
   renderCaseFiles(){
     return this.data.caseFiles.map((caseFile) => {
       if (caseFile.image){
         return (
-          <div key={caseFile._id}>
+          <div key={caseFile._id} id={caseFile._id}>
           <ListItem 
+            key={caseFile._id}
             primaryText={caseFile.description.substr(0,35)}
             secondaryText={caseFile.description}
             secondaryTextLines={2}
+            onTouchTap={this.onListTap}
             leftAvatar={<Avatar src={ caseFile.image }/>}
             />
             <ListDivider />
