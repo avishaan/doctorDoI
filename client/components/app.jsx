@@ -49,8 +49,7 @@ App = React.createClass({
   showLogin() {
     return (
       <div>
-        {this.props.content}
-        {this.props.nav}
+        <Login />
       </div>
     );
   },
@@ -60,7 +59,7 @@ App = React.createClass({
         <div className="logo"></div>
         <h1 className="title">Doc Do I</h1>
         <div className="subtitle">The opinions of our medical professionals</div>
-        {this.showLayout()}
+        {this.data.loggedIn ? this.showLayout() : this.showLogin()}
       </div>
     );
   }
