@@ -22,7 +22,7 @@ CaseFilesList = React.createClass({
   },
   renderCaseFiles(){
     return this.data.caseFiles.map((caseFile) => {
-      if (caseFile.image){
+      if (caseFile.image && caseFile.numOpinions < 2){
         return (
           <div key={caseFile._id} id={caseFile._id}>
           <ListItem 

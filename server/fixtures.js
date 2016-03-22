@@ -47,7 +47,7 @@ if (CaseFiles.find().count() === 0) {
       confidence: chance.integer({min: 10, max: 90}),
       description: chance.paragraph({sentences: 2}),
       image: '/imgs/1.png',
-      numResponses: 1
+      numOpinions: 1
     }, {
       doctor: {
         _id: doctors[1]._id,
@@ -58,7 +58,7 @@ if (CaseFiles.find().count() === 0) {
       confidence: chance.integer({min: 10, max: 90}),
       description: chance.paragraph({sentences: 2}),
       image: '/imgs/2.png',
-      numResponses: 1
+      numOpinions: 1
     }, {
       doctor: {
         _id: doctors[2]._id,
@@ -69,7 +69,7 @@ if (CaseFiles.find().count() === 0) {
       confidence: chance.integer({min: 10, max: 90}),
       description: chance.paragraph({sentences: 2}),
       image: '/imgs/3.png',
-      numResponses: 0
+      numOpinions: 0
     }, {
       doctor: {
         _id: doctors[3]._id,
@@ -80,7 +80,7 @@ if (CaseFiles.find().count() === 0) {
       confidence: chance.integer({min: 10, max: 90}),
       description: chance.paragraph({sentences: 2}),
       image: imageURI, // the imageURI is at the bottom hiding
-      numResponses: 0
+      numOpinions: 0
     }
   ];
   for (let i = 0; i < caseFiles.length; i++) {
