@@ -38,14 +38,29 @@ App = React.createClass({
       selectedPlayer: Players.findOne(this.state.selectedPlayerId)
     };
   },
+  showLayout() {
+    return (
+      <div>
+        {this.props.content}
+        {this.props.nav}
+      </div>
+    );
+  },
+  showLogin() {
+    return (
+      <div>
+        {this.props.content}
+        {this.props.nav}
+      </div>
+    );
+  },
   render() {
     return (
       <div className="outer">
         <div className="logo"></div>
         <h1 className="title">Doc Do I</h1>
         <div className="subtitle">The opinions of our medical professionals</div>
-        {this.props.content}
-        {this.props.nav}
+        {this.showLayout()}
       </div>
     );
   }
