@@ -34,7 +34,7 @@ New = React.createClass({
     CaseFiles.insert({
       image: this.state.imageSrc,
       description: this.state.description,
-      numResponses: 0
+      numOpinions: 0
     });
   },
   onDescriptionChange(e) {

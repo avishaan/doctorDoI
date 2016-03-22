@@ -42,16 +42,20 @@ CaseFileView = React.createClass({
     // save opinion to database
     CaseFiles.update(
       { _id: this.props.oid },
-      { $addToSet: {
+      {
+        $inc: {
+          numOpinions: 1
+        },
+        $addToSet: {
         opinions: {
           doctor: {_id: 1},
           text: this.state.opinion
         }
       }}
     );
-    // increment number of attached opinions[]
     // attach doctor to opinion
     // route back to list of opinion
+    FlowRouter.go('CaseFilesList');
   },
   onOpinionChange(e) {
     this.setState({opinion: e.target.value});

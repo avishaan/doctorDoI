@@ -13,7 +13,7 @@ Nav = React.createClass({
     if (value == "new") {
       FlowRouter.go('New');
     } else {
-      FlowRouter.go('OutcomesList');
+      FlowRouter.go('CaseFilesList', {}, {});
     }
   },
   render() {
@@ -23,7 +23,7 @@ Nav = React.createClass({
           label="New" route="/new" value="new" >
         </Tab>
         <Tab
-          label="Outcomes" route="/outcomes" value="outcomes" >
+          label="Case Files" route="/outcomes" value="outcomes" >
         </Tab>
       </Tabs>
     );
