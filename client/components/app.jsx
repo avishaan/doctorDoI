@@ -19,7 +19,8 @@ App = React.createClass({
   mixins: [ReactMeteorData],
   getInitialState: function () {
     return {
-      selectedPlayerId: null
+      selectedPlayerId: null,
+      loggedIn: !!Meteor.user()
     };
   },
   childContextTypes: {

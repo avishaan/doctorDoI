@@ -1,3 +1,13 @@
+FlowRouter.route("/login", {
+  name: 'Login',
+  action() {
+    ReactLayout.render(App, {
+      content: <Login />,
+      nav: <Nav />
+    });
+  }
+});
+
 FlowRouter.route("/", {
   name: 'New',
   action() {
