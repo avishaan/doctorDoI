@@ -23,6 +23,10 @@ Login = React.createClass({
     var password = this.refs.password.getValue();
     Meteor.loginWithPassword(email, password, FlowRouter.go('New'));
   },
+  onRegisterTap(e){
+    e.preventDefault();
+    FlowRouter.go('Register');
+  },
   render() {
     return (
       <div>
@@ -41,10 +45,17 @@ Login = React.createClass({
           type="password"
         />
         <br/>
+        <br/>
         <RaisedButton label="Login"
           primary={true}
           style={styles.button}
           onTouchTap={this.onLoginTap}
+        />
+        <br/>
+        <RaisedButton label="Register"
+          primary={false}
+          style={styles.button}
+          onTouchTap={this.onRegisterTap}
         />
       </div>
     );
