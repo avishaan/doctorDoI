@@ -38,13 +38,23 @@ CaseFileView = React.createClass({
     };
   },
   onSubmitTap() {
+    console.log('save opinion');
     // save opinion to database
+    CaseFiles.update(
+      { _id: this.props.oid },
+      { $addToSet: {
+        opinions: {
+          doctor: {_id: 1},
+          text: this.state.opinion
+        }
+      }}
+    );
     // increment number of attached opinions[]
     // attach doctor to opinion
     // route back to list of opinion
   },
-  onDescriptionChange(e) {
-    this.setState({description: e.target.value});
+  onOpinionChange(e) {
+    this.setState({opinion: e.target.value});
   },
   render() {
     return (
@@ -58,6 +68,7 @@ CaseFileView = React.createClass({
           hintText="Enter your opinion of the diagnosis for what may have occured"
           floatingLabelText="Diagnostic Opinion"
           multiLine={true}
+          onChange={this.onOpinionChange}
           fullWidth={true}
           rows={3}
         />
