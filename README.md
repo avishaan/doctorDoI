@@ -11,3 +11,5 @@ We are using the [markoshust:material-ui](https://atmospherejs.com/markoshust/ma
 ### TODO
 -[ ] Add react component whose image data element can be updated with a tag, use state to keep track of this, or just change the dom element letting the user know the image is attached, that would be much easier
 - [ ] I think I was trying to get a single outcome to generate on the full screen, seems like I was able to pass in the outcome ID along with a route change, need to reuse the "new.jsx" to show the outcome
+- [ ] Continue working on single 'condition/symptom' overlay
+- [ ] Call outcomes a "case" instead of outcome
