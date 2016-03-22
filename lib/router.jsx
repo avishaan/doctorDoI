@@ -28,11 +28,11 @@ FlowRouter.route("/pending", {
   }
 });
 
-FlowRouter.route("/outcomesList", {
-  name: 'OutcomesList',
+FlowRouter.route("/caseFiles", {
+  name: 'CaseFilesList',
   action() {
     ReactLayout.render(App, {
-      content: <OutcomesList />,
+      content: <CaseFilesList />,
       nav: <Nav />
     });
   }
