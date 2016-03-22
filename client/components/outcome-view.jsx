@@ -2,7 +2,9 @@ const {
   TextField,
   Divider,
   Paper,
-  RaisedButton
+  RaisedButton,
+  CardMedia,
+  CardTitle
 } = mui;
 
 const styles = {
@@ -44,15 +46,11 @@ OutcomeView = React.createClass({
   render() {
     return (
       <div>
-        <TextField
-          hintText={this.data.outcome.description}
-          floatingLabelText="Description of symptoms"
-          multiLine={true}
-          fullWidth={true}
-          value={this.data.outcome.description}
-          onChange={this.onDescriptionChange}
-          rows={4}
-        />
+        <CardMedia
+          overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+        >
+          <img src="http://lorempixel.com/600/337/nature/" />
+        </CardMedia>
         <RaisedButton label="Submit Opinion"
           primary={true}
           style={styles.button}
