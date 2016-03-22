@@ -17,13 +17,14 @@ CaseFilesList = React.createClass({
   },
   renderCaseFiles(){
     return this.data.caseFiles.map((caseFile) => {
-      if (caseFile.doctor){
+      if (caseFile.image){
         return (
           <div key={caseFile._id}>
           <ListItem 
-            primaryText={caseFile.doctor.name}
-            leftAvatar={<Avatar src={ caseFile.doctor.image }/>}
-            secondaryText={'Likelihood of issue: ' + caseFile.confidence}
+            primaryText={caseFile.description.substr(0,35)}
+            secondaryText={caseFile.description}
+            secondaryTextLines={2}
+            leftAvatar={<Avatar src={ caseFile.image }/>}
             />
             <ListDivider />
           </div>
