@@ -13,7 +13,7 @@ Nav = React.createClass({
     if (value == "new") {
       FlowRouter.go('New');
     } else {
-      FlowRouter.go('OutcomesList');
+      FlowRouter.go('CaseFilesList', {}, {});
     }
   },
   render() {
