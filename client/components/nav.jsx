@@ -23,7 +23,7 @@ Nav = React.createClass({
           label="New" route="/new" value="new" >
         </Tab>
         <Tab
-          label="Outcomes" route="/outcomes" value="outcomes" >
+          label="Case Files" route="/outcomes" value="outcomes" >
         </Tab>
       </Tabs>
     );
