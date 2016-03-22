@@ -23,6 +23,15 @@ App = React.createClass({
       loggedIn: !!Meteor.user()
     };
   },
+  allowedLayout() {
+    // allows us to choose which routes bypass authentication such as the login/registrations form
+    var allowedLayouts = ['Login', 'Register'];
+    var layoutAllowed = false;
+    if (allowedLayouts.indexOf(this.props.content.props.name) > -1 || this.data.loggedIn){
+      layoutAllowed = true;
+    }
+    return layoutAllowed;
+  },
   childContextTypes: {
     muiTheme: React.PropTypes.object
   },
@@ -59,7 +68,7 @@ App = React.createClass({
         <div className="logo"></div>
         <h1 className="title">Doc Do I</h1>
         <div className="subtitle">The opinions of our medical professionals</div>
-        {this.data.loggedIn ? this.showLayout() : this.showLogin()}
+        {this.allowedLayout() ? this.showLayout() : this.showLogin()}
       </div>
     );
   }

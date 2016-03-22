@@ -1,8 +1,18 @@
+FlowRouter.route("/register", {
+  name: 'Register',
+  action() {
+    ReactLayout.render(App, {
+      content: <Register name="Register"/>,
+      nav: <Nav />
+    });
+  }
+});
+
 FlowRouter.route("/login", {
   name: 'Login',
   action() {
     ReactLayout.render(App, {
-      content: <Login />,
+      content: <Login name="Login"/>,
       nav: <Nav />
     });
   }
