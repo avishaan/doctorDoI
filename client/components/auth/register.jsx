@@ -18,19 +18,27 @@ const styles = {
 };
 Register = React.createClass({
   onRegisterTap(e){
+    e.preventDefault();
+    var email = this.refs.email.getValue();
+    var password = this.refs.password.getValue();
+    Accounts.createUser({
+      'email': email,
+      'password': password
+    });
+    FlowRouter.go('New');
   },
   render() {
     return (
       <div>
         <TextField
-          id="email"
+          ref="email"
           hintText="type in your email address"
           floatingLabelText="email"
           fullWidth={true}
         />
         <br/>
         <TextField
-          id="password"
+          ref="password"
           hintText="pick a password"
           floatingLabelText="password"
           fullWidth={true}
