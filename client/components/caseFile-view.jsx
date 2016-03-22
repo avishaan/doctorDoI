@@ -42,7 +42,11 @@ CaseFileView = React.createClass({
     // save opinion to database
     CaseFiles.update(
       { _id: this.props.oid },
-      { $addToSet: {
+      {
+        $inc: {
+          numOpinions: 1
+        },
+        $addToSet: {
         opinions: {
           doctor: {_id: 1},
           text: this.state.opinion
