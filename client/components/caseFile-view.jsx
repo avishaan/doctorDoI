@@ -60,12 +60,32 @@ CaseFileView = React.createClass({
   onOpinionChange(e) {
     this.setState({opinion: e.target.value});
   },
-  renderOpinions(){
+  renderOpinionSubmit(){
+    // only doctors can submit an opinion
     if (Roles.userIsInRole(Meteor.userId(), 'doctor')) {
       return (
-        <h1> Doctor </h1>
+        <div>
+          <TextField
+            hintText="Enter your opinion of the diagnosis for what may have occured"
+            floatingLabelText="Diagnostic Opinion"
+            multiLine={true}
+            onChange={this.onOpinionChange}
+            fullWidth={true}
+            rows={3}
+          />
+          <RaisedButton label="Submit Opinion"
+            primary={true}
+            style={styles.button}
+            onTouchEnd={this.onSubmitTap}
+            onMouseUp={this.onSubmitTap}
+          />
+        </div>
       );
-    } else {
+    }
+  },
+  renderOpinions(){
+    // doctors shouldn't see other's opinions
+    if (!Roles.userIsInRole(Meteor.userId(), 'doctor')) {
       return (
         <h1> User </h1>
       );
@@ -79,20 +99,7 @@ CaseFileView = React.createClass({
         >
           <img src={this.data.caseFile.image}/>
         </CardMedia>
-        <TextField
-          hintText="Enter your opinion of the diagnosis for what may have occured"
-          floatingLabelText="Diagnostic Opinion"
-          multiLine={true}
-          onChange={this.onOpinionChange}
-          fullWidth={true}
-          rows={3}
-        />
-        <RaisedButton label="Submit Opinion"
-          primary={true}
-          style={styles.button}
-          onTouchEnd={this.onSubmitTap}
-          onMouseUp={this.onSubmitTap}
-        />
+        {this.renderOpinionSubmit()}
         {this.renderOpinions()}
       </div>
     );
