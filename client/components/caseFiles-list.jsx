@@ -9,7 +9,7 @@ CaseFilesList = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
-      caseFiles: CaseFiles.find({}).fetch()
+      caseFiles: CaseFiles.find({ 'patientId': Meteor.userId() }).fetch()
     };
   },
   selectCaseFile(caseFileId) {
