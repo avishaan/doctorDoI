@@ -49,6 +49,7 @@ Register = React.createClass({
           type="password"
         />
         <br/>
+        <br/>
         <RaisedButton label="Register"
           primary={true}
           style={styles.button}
