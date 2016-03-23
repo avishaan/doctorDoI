@@ -17,10 +17,27 @@ const styles = {
 
 App = React.createClass({
   mixins: [ReactMeteorData],
+  getMeteorData() {
+    return {
+      players: Players.find({}, { sort: { score: -1, name: 1 } }).fetch(),
+      outcomes: Outcomes.find({}).fetch(),
+      selectedPlayer: Players.findOne(this.state.selectedPlayerId),
+      loggedIn: !!Meteor.user()
+    };
+  },
   getInitialState: function () {
     return {
       selectedPlayerId: null
     };
+  },
+  allowedLayout() {
+    // allows us to choose which routes bypass authentication such as the login/registrations form
+    var allowedLayouts = ['Login', 'Register'];
+    var layoutAllowed = false;
+    if (allowedLayouts.indexOf(this.props.content.props.name) > -1 || this.data.loggedIn){
+      layoutAllowed = true;
+    }
+    return layoutAllowed;
   },
   childContextTypes: {
     muiTheme: React.PropTypes.object
@@ -30,12 +47,20 @@ App = React.createClass({
       muiTheme: ThemeManager.getMuiTheme(Styles.LightRawTheme)
     };
   },
-  getMeteorData() {
-    return {
-      players: Players.find({}, { sort: { score: -1, name: 1 } }).fetch(),
-      outcomes: Outcomes.find({}).fetch(),
-      selectedPlayer: Players.findOne(this.state.selectedPlayerId)
-    };
+  showLayout() {
+    return (
+      <div>
+        {this.props.content}
+        {this.props.nav}
+      </div>
+    );
+  },
+  showLogin() {
+    return (
+      <div>
+        <Login />
+      </div>
+    );
   },
   render() {
     return (
@@ -43,8 +68,7 @@ App = React.createClass({
         <div className="logo"></div>
         <h1 className="title">Doc Do I</h1>
         <div className="subtitle">The opinions of our medical professionals</div>
-        {this.props.content}
-        {this.props.nav}
+        {this.allowedLayout() ? this.showLayout() : this.showLogin()}
       </div>
     );
   }

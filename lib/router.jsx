@@ -1,8 +1,28 @@
+FlowRouter.route("/register", {
+  name: 'Register',
+  action() {
+    ReactLayout.render(App, {
+      content: <Register name="Register"/>,
+      nav: <Nav />
+    });
+  }
+});
+
+FlowRouter.route("/login", {
+  name: 'Login',
+  action() {
+    ReactLayout.render(App, {
+      content: <Login name="Login"/>,
+      nav: <Nav />
+    });
+  }
+});
+
 FlowRouter.route("/", {
   name: 'New',
   action() {
     ReactLayout.render(App, {
-      content: <New />,
+      content: <New name="New"/>,
       nav: <Nav />
     });
   }
@@ -32,7 +52,7 @@ FlowRouter.route("/caseFiles", {
   name: 'CaseFilesList',
   action() {
     ReactLayout.render(App, {
-      content: <CaseFilesList />,
+      content: <CaseFilesList name="CaseFilesList"/>,
       nav: <Nav />
     });
   }
