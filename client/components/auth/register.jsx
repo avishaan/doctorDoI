@@ -33,11 +33,14 @@ Register = React.createClass({
     }, function(err){
       if (err) {
         console.log(err);
-      } else if (isDoctor) {
-        // assign role to user
-        Meteor.call('addRoleToUser', Meteor.userId(), 'doctor');
+        alert(err.message);
+      } else {
+        if (isDoctor) {
+          // assign user a role
+          Meteor.call('addRoleToUser', Meteor.userId(), 'doctor');
+        }
+        FlowRouter.go('New');
       }
-      FlowRouter.go('New');
     });
   },
   onLoginTap(e){
