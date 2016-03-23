@@ -27,6 +27,10 @@ Register = React.createClass({
     });
     FlowRouter.go('New');
   },
+  onLoginTap(e){
+    e.preventDefault();
+    FlowRouter.go('Login');
+  },
   render() {
     return (
       <div>
@@ -49,6 +53,12 @@ Register = React.createClass({
           primary={true}
           style={styles.button}
           onTouchTap={this.onRegisterTap}
+        />
+        <br/>
+        <RaisedButton label="Login"
+          primary={false}
+          style={styles.button}
+          onTouchTap={this.onLoginTap}
         />
       </div>
     );
