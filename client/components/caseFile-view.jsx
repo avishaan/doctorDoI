@@ -1,10 +1,15 @@
 const {
   TextField,
+  List,
+  ListItem,
+  ListDivider,
   Divider,
   Paper,
   RaisedButton,
   CardMedia,
-  CardTitle
+  CardTitle,
+  FontIcon,
+  Avatar
 } = mui;
 
 const styles = {
@@ -85,10 +90,23 @@ CaseFileView = React.createClass({
   },
   renderOpinions(){
     // doctors shouldn't see other's opinions
-    if (!Roles.userIsInRole(Meteor.userId(), 'doctor')) {
-      return (
-        <h1> User </h1>
-      );
+    if (!Roles.userIsInRole(Meteor.userId(), 'doctor') &&
+        this.data.caseFile.opinions) {
+      return this.data.caseFile.opinions.map((opinion) => {
+        // render each opinion
+        return (
+          <div>
+          <ListDivider />
+          <ListItem 
+            secondaryText={opinion.text}
+            secondaryTextLines={2}
+            leftAvatar={
+              <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} />
+            }
+            />
+          </div>
+        );
+      });
     }
   },
   render() {
