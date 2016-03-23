@@ -34,7 +34,8 @@ New = React.createClass({
     CaseFiles.insert({
       image: this.state.imageSrc,
       description: this.state.description,
-      numOpinions: 0
+      numOpinions: 0,
+      patientId: Meteor.userId()
     });
   },
   onDescriptionChange(e) {
