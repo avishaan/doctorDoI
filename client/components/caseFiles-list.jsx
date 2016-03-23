@@ -8,8 +8,17 @@ const {
 CaseFilesList = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
+    var caseFiles;
+    // if doctor, can see all cases
+    // can see cases based on user role
+    if (Roles.getRolesForUser(Meteor.userId()).indexOf('doctor') !== -1){
+      // dr can see all cases
+      caseFiles = CaseFiles.find().fetch();
+    } else {
+      caseFiles = CaseFiles.find({ 'patientId': Meteor.userId() }).fetch();
+    }
     return {
-      caseFiles: CaseFiles.find({ 'patientId': Meteor.userId() }).fetch()
+      'caseFiles': caseFiles
     };
   },
   selectCaseFile(caseFileId) {
