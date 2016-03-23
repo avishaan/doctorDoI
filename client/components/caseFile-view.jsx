@@ -60,6 +60,17 @@ CaseFileView = React.createClass({
   onOpinionChange(e) {
     this.setState({opinion: e.target.value});
   },
+  renderOpinions(){
+    if (Roles.userIsInRole(Meteor.userId(), 'doctor')) {
+      return (
+        <h1> Doctor </h1>
+      );
+    } else {
+      return (
+        <h1> User </h1>
+      );
+    }
+  },
   render() {
     return (
       <div>
@@ -82,6 +93,7 @@ CaseFileView = React.createClass({
           onTouchEnd={this.onSubmitTap}
           onMouseUp={this.onSubmitTap}
         />
+        {this.renderOpinions()}
       </div>
     );
   }
