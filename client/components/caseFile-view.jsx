@@ -101,7 +101,7 @@ CaseFileView = React.createClass({
             secondaryText={opinion.text}
             secondaryTextLines={2}
             leftAvatar={
-              <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} />
+              <Avatar icon={<FontIcon className="fa fa-user-md" />} />
             }
             />
           </div>
