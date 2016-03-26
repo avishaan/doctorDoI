@@ -93,6 +93,7 @@ CaseFileView = React.createClass({
     if (!Roles.userIsInRole(Meteor.userId(), 'doctor') &&
         this.data.caseFile.opinions) {
       return this.data.caseFile.opinions.map((opinion) => {
+        console.log("generate color: ", Utils.generateColor('testing'));
         // render each opinion
         return (
           <div>
