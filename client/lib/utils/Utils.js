@@ -1,5 +1,4 @@
 let generateColor = (seed) => {
-  console.log(`seed ${seed}`);
   seed = seed || 'default' // give a default value sometimes
   let hash = CryptoJS.MD5(seed).toString();
   let hexColor = "#" + hash.substr(0,6);
