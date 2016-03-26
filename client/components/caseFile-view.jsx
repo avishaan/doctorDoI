@@ -20,9 +20,6 @@ const styles = {
     margin: "0, auto",
     display: "block"
   },
-  avatar: {
-    backgroundColor: "rgb(255,0,0)"
-  },
   image: {
     display: "block",
     width: 300,
@@ -96,7 +93,6 @@ CaseFileView = React.createClass({
     if (!Roles.userIsInRole(Meteor.userId(), 'doctor') &&
         this.data.caseFile.opinions) {
       return this.data.caseFile.opinions.map((opinion) => {
-        let cssColor = Utils.generateColor('test');
         let avatarStyle = {
           'backgroundColor': cssColor
         };

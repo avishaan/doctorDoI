@@ -7,9 +7,9 @@ let generateColor = (seed) => {
   let b = parseInt(hexColor.substr(5,2), 16);
 
   // mix color
-  r = (r + mix[0]) / 2;
-  g = (g + mix[1]) / 2;
-  b = (b + mix[2]) / 2;
+  r = Math.floor((r + mix[0]) / 2);
+  g = Math.floor((g + mix[1]) / 2);
+  b = Math.floor((b + mix[2]) / 2);
   return `rgb(${r},${g},${b})`;
   //return [r, g, b];
 };
