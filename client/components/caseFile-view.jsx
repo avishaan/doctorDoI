@@ -20,6 +20,9 @@ const styles = {
     margin: "0, auto",
     display: "block"
   },
+  avatar: {
+    backgroundColor: "rgb(255,0,0)"
+  },
   image: {
     display: "block",
     width: 300,
@@ -93,7 +96,11 @@ CaseFileView = React.createClass({
     if (!Roles.userIsInRole(Meteor.userId(), 'doctor') &&
         this.data.caseFile.opinions) {
       return this.data.caseFile.opinions.map((opinion) => {
-        console.log("generate color: ", Utils.generateColor('testing'));
+        let cssColor = Utils.generateColor('test');
+        let avatarStyle = {
+          'backgroundColor': cssColor
+        };
+        console.log(cssColor);
         // render each opinion
         return (
           <div>
@@ -102,8 +109,10 @@ CaseFileView = React.createClass({
             secondaryText={opinion.text}
             secondaryTextLines={2}
             leftAvatar={
-              <Avatar icon={<FontIcon className="fa fa-user-md" />} />
-            }
+            <Avatar 
+              style={avatarStyle}
+              icon={<FontIcon className="fa fa-user-md" />}
+            />}
             />
           </div>
         );

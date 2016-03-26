@@ -10,7 +10,7 @@ let generateColor = (seed) => {
   r = (r + mix[0]) / 2;
   g = (g + mix[1]) / 2;
   b = (b + mix[2]) / 2;
-  return `(${r},${g},${b})`;
+  return `rgb(${r},${g},${b})`;
   //return [r, g, b];
 };
 
