@@ -53,7 +53,7 @@ CaseFileView = React.createClass({
         },
         $addToSet: {
         opinions: {
-          doctor: {_id: 1},
+          doctor: {_id: Meteor.userId()},
           text: this.state.opinion
         }
       }}
