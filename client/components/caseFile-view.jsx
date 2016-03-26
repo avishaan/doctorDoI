@@ -93,18 +93,18 @@ CaseFileView = React.createClass({
     if (!Roles.userIsInRole(Meteor.userId(), 'doctor') &&
         this.data.caseFile.opinions) {
       return this.data.caseFile.opinions.map((opinion) => {
+        // get a repeatable random color in rgb format
         let cssColor = Utils.generateColor(opinion.doctor._id.toString());
         let avatarStyle = {
           'backgroundColor': cssColor
         };
-        console.log(cssColor);
         // render each opinion
         return (
           <div>
           <ListDivider />
           <ListItem 
             secondaryText={opinion.text}
-            secondaryTextLines={2}
+            secondaryTextLines={3}
             leftAvatar={
             <Avatar 
               style={avatarStyle}
