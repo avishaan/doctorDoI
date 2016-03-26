@@ -93,6 +93,7 @@ CaseFileView = React.createClass({
     if (!Roles.userIsInRole(Meteor.userId(), 'doctor') &&
         this.data.caseFile.opinions) {
       return this.data.caseFile.opinions.map((opinion) => {
+        let cssColor = Utils.generateColor('testing');
         let avatarStyle = {
           'backgroundColor': cssColor
         };
