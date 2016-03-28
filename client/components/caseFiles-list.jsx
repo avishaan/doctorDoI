@@ -12,8 +12,8 @@ CaseFilesList = React.createClass({
     // if doctor, can see all cases
     // can see cases based on user role
     if (Roles.getRolesForUser(Meteor.userId()).indexOf('doctor') !== -1){
-      // dr can see all cases
-      caseFiles = CaseFiles.find().fetch();
+      // dr can see all cases with less than 2 opinions
+      caseFiles = CaseFiles.find({ 'opinions.1': { $exists: false }}).fetch();
     } else {
       caseFiles = CaseFiles.find({ 'patientId': Meteor.userId() }).fetch();
     }
@@ -31,7 +31,7 @@ CaseFilesList = React.createClass({
   },
   renderCaseFiles(){
     return this.data.caseFiles.map((caseFile) => {
-      if (caseFile.image && caseFile.numOpinions < 2){
+      if (caseFile.image){
         return (
           <div key={caseFile._id} id={caseFile._id}>
           <ListItem 
