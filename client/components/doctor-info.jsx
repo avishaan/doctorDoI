@@ -18,7 +18,7 @@ const styles = {
 DoctorInfo = React.createClass({
   standardActions: [
     { text: 'Cancel' },
-    { text: 'Submit', onTouchTap: this.onDialogSubmit, ref: 'submit' }
+    { text: 'Ok', onTouchTap: this.onDialogSubmit, ref: 'submit' }
   ],
   onDialogSubmit() {
     console.log('dialog submitted');
