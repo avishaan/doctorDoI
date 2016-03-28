@@ -66,10 +66,10 @@ CaseFileView = React.createClass({
   onOpinionChange(e) {
     this.setState({opinion: e.target.value});
   },
-  onOpinionTap(e) {
+  onOpinionTap(opinion) {
     // change prop state to open
-    this.setState({dialogText: 'Dialog Text'});
-    this.setState({dialogTitle: 'Dialog Title'});
+    this.setState({dialogText: opinion.text});
+    this.setState({dialogTitle: 'Professional Opinion'});
     this.showDialog();
     // this.refs.doctorInfo.setProps({'open': true});
   },
@@ -114,10 +114,12 @@ CaseFileView = React.createClass({
         };
         // render each opinion
         return (
-          <div>
+          <div
+            test="test"
+          >
           <ListDivider />
           <ListItem 
-            onTouchTap={this.onOpinionTap}
+            onTouchTap={() => this.onOpinionTap(opinion)}
             secondaryText={opinion.text}
             secondaryTextLines={2}
             leftAvatar={
