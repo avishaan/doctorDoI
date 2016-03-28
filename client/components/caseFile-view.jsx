@@ -104,7 +104,7 @@ CaseFileView = React.createClass({
           <ListDivider />
           <ListItem 
             secondaryText={opinion.text}
-            secondaryTextLines={3}
+            secondaryTextLines={2}
             leftAvatar={
             <Avatar 
               style={avatarStyle}
