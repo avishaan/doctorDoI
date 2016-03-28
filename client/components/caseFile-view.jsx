@@ -74,7 +74,7 @@ CaseFileView = React.createClass({
     // this.refs.doctorInfo.setProps({'open': true});
   },
   showDialog(){
-    if(this.refs.doctorInfo.refs.doctorInfoDialog) {
+    if (this.refs.doctorInfo.refs.doctorInfoDialog) {
       // open dialog
       this.refs.doctorInfo.refs.doctorInfoDialog.show();
     }
