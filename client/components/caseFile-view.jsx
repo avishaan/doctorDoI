@@ -140,7 +140,12 @@ CaseFileView = React.createClass({
         </CardMedia>
         {this.renderOpinionSubmit()}
         {this.renderOpinions()}
-        <DoctorInfo ref="doctorInfo" open={false}/>
+        <DoctorInfo
+          ref="doctorInfo"
+          open={false}
+          bodyText="placeholder text"
+          titleText="Placeholder Dialog"
+        />
       </div>
     );
   }

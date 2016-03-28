@@ -23,13 +23,13 @@ DoctorInfo = React.createClass({
     return (
       <Dialog
         ref="doctorInfoDialog"
-        title="Dialog With Standard Actions"
+        title={this.props.dialogText}
         actions={this.standardActions}
         actionFocus="submit"
         openImmediately={false}
         open={this.props.open}
         onRequestClose={this.handleRequestClose}>
-        The actions in this window are created from the json that's passed in.
+        {this.props.titleText}
       </Dialog>
     );
   }
