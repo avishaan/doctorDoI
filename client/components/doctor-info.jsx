@@ -2,8 +2,8 @@ const {
   RaisedButton,
   Dialog,
   FlatButton,
-  FontIcon,
-  Avatar
+  FloatingActionButton,
+  FontIcon
 } = mui;
 
 DoctorInfo = React.createClass({
@@ -28,8 +28,16 @@ DoctorInfo = React.createClass({
         actionFocus="submit"
         openImmediately={false}
         open={this.props.open}
-        onRequestClose={this.handleRequestClose}>
-        {this.props.bodyText}
+        onRequestClose={this.handleRequestClose}
+      >
+        <div id='communicatePanel'>
+          <FloatingActionButton iconClassName="fa fa-phone" secondary={true} />
+          <FloatingActionButton iconClassName="fa fa-video-camera" secondary={true} />
+          <FloatingActionButton iconClassName="fa fa-mobile" secondary={true} />
+        </div>
+        <br/>
+          {this.props.bodyText}
+
       </Dialog>
     );
   }
