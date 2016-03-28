@@ -69,7 +69,7 @@ CaseFileView = React.createClass({
   onOpinionTap(opinion) {
     // change prop state to open
     this.setState({dialogText: opinion.text});
-    this.setState({dialogTitle: 'Professional Opinion'});
+    this.setState({dialogTitle: 'Contact the Dr.'});
     this.showDialog();
     // this.refs.doctorInfo.setProps({'open': true});
   },
