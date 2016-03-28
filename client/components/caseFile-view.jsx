@@ -39,7 +39,8 @@ CaseFileView = React.createClass({
   getInitialState() {
     // this will set init state, used only for UI updates
     return {
-      imageSrc: "/imgs/paperCut.jpg"
+      imageSrc: "/imgs/paperCut.jpg",
+      'showDialog': false
     };
   },
   onSubmitTap() {
@@ -64,6 +65,18 @@ CaseFileView = React.createClass({
   },
   onOpinionChange(e) {
     this.setState({opinion: e.target.value});
+  },
+  onOpinionTap(e) {
+    // change prop state to open
+    console.log('opinion tapped');
+    this.showDialog();
+    // this.refs.doctorInfo.setProps({'open': true});
+  },
+  showDialog(){
+    if(this.refs.doctorInfo.refs.doctorInfoDialog) {
+      // open dialog
+      this.refs.doctorInfo.refs.doctorInfoDialog.show();
+    }
   },
   renderOpinionSubmit(){
     // only doctors can submit an opinion
@@ -103,6 +116,7 @@ CaseFileView = React.createClass({
           <div>
           <ListDivider />
           <ListItem 
+            onTouchTap={this.onOpinionTap}
             secondaryText={opinion.text}
             secondaryTextLines={2}
             leftAvatar={
@@ -126,6 +140,7 @@ CaseFileView = React.createClass({
         </CardMedia>
         {this.renderOpinionSubmit()}
         {this.renderOpinions()}
+        <DoctorInfo ref="doctorInfo" open={false}/>
       </div>
     );
   }
