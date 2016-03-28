@@ -23,13 +23,13 @@ DoctorInfo = React.createClass({
     return (
       <Dialog
         ref="doctorInfoDialog"
-        title={this.props.dialogText}
+        title={this.props.dialogTitle}
         actions={this.standardActions}
         actionFocus="submit"
         openImmediately={false}
         open={this.props.open}
         onRequestClose={this.handleRequestClose}>
-        {this.props.titleText}
+        {this.props.dialogText}
       </Dialog>
     );
   }
