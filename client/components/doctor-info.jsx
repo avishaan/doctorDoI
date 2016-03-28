@@ -6,6 +6,15 @@ const {
   FontIcon
 } = mui;
 
+const styles = {
+  panel: {
+    display: "flex"
+  },
+  button: {
+    margin: "auto"
+  }
+};
+
 DoctorInfo = React.createClass({
   standardActions: [
     { text: 'Cancel' },
@@ -30,10 +39,10 @@ DoctorInfo = React.createClass({
         open={this.props.open}
         onRequestClose={this.handleRequestClose}
       >
-        <div id='communicatePanel'>
-          <FloatingActionButton iconClassName="fa fa-phone" secondary={true} />
-          <FloatingActionButton iconClassName="fa fa-video-camera" secondary={true} />
-          <FloatingActionButton iconClassName="fa fa-mobile" secondary={true} />
+        <div style={styles.panel}>
+          <FloatingActionButton iconClassName="fa fa-phone" style={styles.button}/>
+          <FloatingActionButton iconClassName="fa fa-video-camera" style={styles.button}/>
+          <FloatingActionButton iconClassName="fa fa-mobile" style={styles.button}/>
         </div>
         <br/>
           {this.props.bodyText}
