@@ -17,15 +17,26 @@ Nav = React.createClass({
     }
   },
   render() {
-    return (
+    // only non-doctors should be able to submit a new issue
+    if (Roles.userIsInRole(Meteor.userId(),['doctor'])){
+      return (
       <Tabs style={styles.tabbar} onChange={this.onTabChange}>
-        <Tab
-          label="New" value="new" >
-        </Tab>
-        <Tab
-          label="Case Files" value="outcomes" >
-        </Tab>
+          <Tab
+            label="Case Files" value="outcomes" >
+          </Tab>
       </Tabs>
-    );
+      );
+    } else {
+      return (
+      <Tabs style={styles.tabbar} onChange={this.onTabChange}>
+          <Tab
+            label="New" value="new" >
+          </Tab>
+          <Tab
+            label="Case Files" value="outcomes" >
+          </Tab>
+      </Tabs>
+      );
+    }
   }
 });
