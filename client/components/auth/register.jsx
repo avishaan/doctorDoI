@@ -39,7 +39,7 @@ Register = React.createClass({
           // assign user a role
           Meteor.call('addRoleToUser', Meteor.userId(), 'doctor');
         }
-        FlowRouter.go('New');
+        FlowRouter.go('CaseFilesList');
       }
     });
   },
