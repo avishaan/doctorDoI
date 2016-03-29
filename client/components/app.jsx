@@ -19,9 +19,7 @@ App = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
-      players: Players.find({}, { sort: { score: -1, name: 1 } }).fetch(),
       outcomes: Outcomes.find({}).fetch(),
-      selectedPlayer: Players.findOne(this.state.selectedPlayerId),
       loggedIn: !!Meteor.user()
     };
   },

@@ -34,8 +34,11 @@ New = React.createClass({
     CaseFiles.insert({
       image: this.state.imageSrc,
       description: this.state.description,
-      numOpinions: 0
+      numOpinions: 0,
+      patientId: Meteor.userId()
     });
+    // route to case files
+    FlowRouter.go('CaseFilesList');
   },
   onDescriptionChange(e) {
     this.setState({description: e.target.value});
@@ -65,17 +68,15 @@ New = React.createClass({
           onChange={this.onDescriptionChange}
           rows={4}
         />
-        <RaisedButton label="Submit"
-          primary={true}
-          style={styles.button}
-          onTouchEnd={this.onSubmitTap}
-          onMouseUp={this.onSubmitTap}
-        />
         <RaisedButton label="Attach Image"
           secondary={true}
           style={styles.button}
-          onTouchEnd={this.onAttachTap}
-          onMouseUp={this.onAttachTap}
+          onTouchTap={this.onAttachTap}
+        />
+        <RaisedButton label="Submit"
+          primary={true}
+          style={styles.button}
+          onTouchTap={this.onSubmitTap}
         />
         <Paper style={styles.image} zDepth={1} rounded={true} >
           <img src={this.state.imageSrc} className="symptomImage" />

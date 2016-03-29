@@ -10,22 +10,33 @@ const styles = {
 
 Nav = React.createClass({
   onTabChange(value, e, tab) {
-    if (value == "new") {
+    if (value === "new") {
       FlowRouter.go('New');
     } else {
       FlowRouter.go('CaseFilesList', {}, {});
     }
   },
   render() {
-    return (
+    // only non-doctors should be able to submit a new issue
+    if (Roles.userIsInRole(Meteor.userId(),['doctor'])){
+      return (
       <Tabs style={styles.tabbar} onChange={this.onTabChange}>
-        <Tab
-          label="New" route="/new" value="new" >
-        </Tab>
-        <Tab
-          label="Case Files" route="/outcomes" value="outcomes" >
-        </Tab>
+          <Tab
+            label="Case Files" value="outcomes" >
+          </Tab>
       </Tabs>
-    );
+      );
+    } else {
+      return (
+      <Tabs style={styles.tabbar} onChange={this.onTabChange}>
+          <Tab
+            label="New" value="new" >
+          </Tab>
+          <Tab
+            label="Case Files" value="outcomes" >
+          </Tab>
+      </Tabs>
+      );
+    }
   }
 });

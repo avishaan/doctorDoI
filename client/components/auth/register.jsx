@@ -2,7 +2,8 @@ const {
   RaisedButton,
   TextField,
   Slider,
-  Styles
+  Styles,
+  Toggle
 } = mui;
 
 const ThemeManager = Styles.ThemeManager;
@@ -14,6 +15,10 @@ const styles = {
   button: {
     margin: "0, auto",
     display: "block"
+  },
+  toggle: {
+    marginBottom: 16,
+    marginTop: 16
   }
 };
 Register = React.createClass({
@@ -21,11 +26,22 @@ Register = React.createClass({
     e.preventDefault();
     var email = this.refs.email.getValue();
     var password = this.refs.password.getValue();
-    Accounts.createUser({
+    var isDoctor = this.refs.isDoctor.state.switched;
+    var userId = Accounts.createUser({
       'email': email,
       'password': password
+    }, function(err){
+      if (err) {
+        console.log(err);
+        alert(err.message);
+      } else {
+        if (isDoctor) {
+          // assign user a role
+          Meteor.call('addRoleToUser', Meteor.userId(), 'doctor');
+        }
+        FlowRouter.go('CaseFilesList');
+      }
     });
-    FlowRouter.go('New');
   },
   onLoginTap(e){
     e.preventDefault();
@@ -47,6 +63,12 @@ Register = React.createClass({
           floatingLabelText="password"
           fullWidth={true}
           type="password"
+        />
+        <br/>
+        <Toggle
+          ref="isDoctor"
+          label="Register as Doctor"
+          style={styles.toggle}
         />
         <br/>
         <br/>
