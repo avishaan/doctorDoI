@@ -45,20 +45,10 @@ CaseFileView = React.createClass({
   },
   onSubmitTap() {
     console.log('save opinion');
-    // save opinion to database
-    CaseFiles.update(
-      { _id: this.props.oid },
-      {
-        $inc: {
-          numOpinions: 1
-        },
-        $addToSet: {
-        opinions: {
-          doctor: {_id: Meteor.userId()},
-          text: this.state.opinion
-        }
-      }}
-    );
+    // check if doctor already made opinion
+    // if doctor made opinion, perform update
+    Meteor.call('saveOpinion', this.props.oid, Meteor.userId(), this.state.opinion);
+
     // attach doctor to opinion
     // route back to list of opinion
     FlowRouter.go('CaseFilesList');
