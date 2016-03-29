@@ -66,17 +66,17 @@ New = React.createClass({
           onChange={this.onDescriptionChange}
           rows={4}
         />
-        <RaisedButton label="Submit"
-          primary={true}
-          style={styles.button}
-          onTouchEnd={this.onSubmitTap}
-          onMouseUp={this.onSubmitTap}
-        />
         <RaisedButton label="Attach Image"
           secondary={true}
           style={styles.button}
           onTouchEnd={this.onAttachTap}
           onMouseUp={this.onAttachTap}
+        />
+        <RaisedButton label="Submit"
+          primary={true}
+          style={styles.button}
+          onTouchEnd={this.onSubmitTap}
+          onMouseUp={this.onSubmitTap}
         />
         <Paper style={styles.image} zDepth={1} rounded={true} >
           <img src={this.state.imageSrc} className="symptomImage" />
