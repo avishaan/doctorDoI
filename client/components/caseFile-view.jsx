@@ -95,8 +95,7 @@ CaseFileView = React.createClass({
           <RaisedButton label="Submit Opinion"
             primary={true}
             style={styles.button}
-            onTouchEnd={this.onSubmitTap}
-            onMouseUp={this.onSubmitTap}
+            onTouchTap={this.onSubmitTap}
           />
         </div>
       );
