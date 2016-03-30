@@ -2,35 +2,55 @@ var imageURI = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z
 
 let chance = new Chance();
 
-if (Doctors.find().count() === 0) {
-  console.log("seeding doctors");
+if (Meteor.users.find().count() === 0) {
+  console.log("seeding users");
   const doctors = [
     {
       name: 'Jamison Feramisco',
       background: 'Cardiac Surgeon for 10 years',
-      image: '/imgs/1.png'
+      email: 'dr1@gmail.com',
+      password: 'password'
     }, {
       name: 'Kristy Swanson',
       background: 'Pediatric Surgeon for 3 years',
-      image: '/imgs/2.png'
+      email: 'dr2@gmail.com',
+      password: 'password'
     }, {
       name: 'Bruce French',
       background: 'Orthopedic Surgeon for 5 years',
-      image: '/imgs/3.png'
+      email: 'dr3@gmail.com',
+      password: 'password'
     }, {
       name: 'Neil Phillip',
       background: 'Radiology Surgeon for 7 years',
-      image: '/imgs/4.png'
+      email: 'dr4@gmail.com',
+      password: 'password'
     }, {
       name: 'Ervin Mathis',
       background: 'Emergency Medicine for 2 years',
-      image: '/imgs/5.png'
+      email: 'dr5@gmail.com',
+      password: 'password',
+      roles: ['doctor']
     }
   ];
 
-  for (let i = 0; i < doctors.length; i++) {
-    Doctors.insert(doctors[i]);
-  }
+  //for (let i = 0; i < doctors.length; i++) {
+  doctors.forEach(function(doc){
+    var id = Accounts.createUser({
+      email: doc.email,
+      password: doc.password,
+      profile: {
+        background: doc.background,
+        name: doc.name
+      }
+    });
+    // add appropriate role to created user if applicable
+    if (doc.roles) {
+      Roles.addUsersToRoles(id, doc.roles);
+    }
+  });
+
+  //}
 }
 
 if (CaseFiles.find().count() === 0) {
