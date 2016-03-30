@@ -4,49 +4,63 @@ let chance = new Chance();
 
 if (Meteor.users.find().count() === 0) {
   console.log("seeding users");
-  const doctors = [
+  const users = [
     {
       name: 'Jamison Feramisco',
       background: 'Cardiac Surgeon for 10 years',
       email: 'dr1@gmail.com',
-      password: 'password'
+      password: 'password',
+      roles: ['doctor']
     }, {
       name: 'Kristy Swanson',
       background: 'Pediatric Surgeon for 3 years',
       email: 'dr2@gmail.com',
-      password: 'password'
+      password: 'password',
+      roles: ['doctor']
     }, {
       name: 'Bruce French',
       background: 'Orthopedic Surgeon for 5 years',
       email: 'dr3@gmail.com',
-      password: 'password'
+      password: 'password',
+      roles: ['doctor']
     }, {
       name: 'Neil Phillip',
       background: 'Radiology Surgeon for 7 years',
       email: 'dr4@gmail.com',
-      password: 'password'
+      password: 'password',
+      roles: ['doctor']
     }, {
       name: 'Ervin Mathis',
       background: 'Emergency Medicine for 2 years',
       email: 'dr5@gmail.com',
       password: 'password',
       roles: ['doctor']
+    }, {
+      name: 'Avishaan',
+      background: 'Professional football player and programmer',
+      email: 'user1@gmail.com',
+      password: 'password',
+    }, {
+      name: 'Jack',
+      background: 'Medical student and business person',
+      email: 'user2@gmail.com',
+      password: 'password'
     }
   ];
 
   //for (let i = 0; i < doctors.length; i++) {
-  doctors.forEach(function(doc){
+  users.forEach(function(user){
     var id = Accounts.createUser({
-      email: doc.email,
-      password: doc.password,
+      email: user.email,
+      password: user.password,
       profile: {
-        background: doc.background,
-        name: doc.name
+        background: user.background,
+        name: user.name
       }
     });
     // add appropriate role to created user if applicable
-    if (doc.roles) {
-      Roles.addUsersToRoles(id, doc.roles);
+    if (user.roles) {
+      Roles.addUsersToRoles(id, user.roles);
     }
   });
 
