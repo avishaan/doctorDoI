@@ -40,11 +40,13 @@ if (Meteor.users.find().count() === 0) {
       background: 'Professional football player and programmer',
       email: 'user1@gmail.com',
       password: 'password',
+      roles: ['patient']
     }, {
       name: 'Jack',
       background: 'Medical student and business person',
       email: 'user2@gmail.com',
-      password: 'password'
+      password: 'password',
+      roles: ['patient']
     }
   ];
 
@@ -69,52 +71,24 @@ if (Meteor.users.find().count() === 0) {
 
 if (CaseFiles.find().count() === 0) {
   console.log("seeding caseFiles");
-  let doctors = Doctors.find().fetch();
+  let users = Meteor.users.find({'roles': { $in: ['patient']}}).fetch();
+  let doctors = Meteor.users.find({'roles': { $in: ['doctor']}}).fetch();
+  console.log(doctors);
+  debugger;
   const caseFiles = [
     {
-      doctor: {
-        _id: doctors[0]._id,
-        name: doctors[0].name,
-        background: doctors[0].background,
-        image: doctors[0].image
-      },
-      confidence: chance.integer({min: 10, max: 90}),
-      description: chance.paragraph({sentences: 2}),
-      image: '/imgs/1.png',
-      numOpinions: 1
-    }, {
-      doctor: {
-        _id: doctors[1]._id,
-        name: doctors[1].name,
-        background: doctors[1].background,
-        image: doctors[1].image
-      },
-      confidence: chance.integer({min: 10, max: 90}),
-      description: chance.paragraph({sentences: 2}),
-      image: '/imgs/2.png',
-      numOpinions: 1
-    }, {
-      doctor: {
-        _id: doctors[2]._id,
-        name: doctors[2].name,
-        background: doctors[2].background,
-        image: doctors[2].image
-      },
-      confidence: chance.integer({min: 10, max: 90}),
-      description: chance.paragraph({sentences: 2}),
-      image: '/imgs/3.png',
-      numOpinions: 0
-    }, {
-      doctor: {
-        _id: doctors[3]._id,
-        name: doctors[3].name,
-        background: doctors[3].background,
-        image: doctors[3].image
-      },
-      confidence: chance.integer({min: 10, max: 90}),
-      description: chance.paragraph({sentences: 2}),
-      image: imageURI, // the imageURI is at the bottom hiding
-      numOpinions: 0
+      description: "I have had a rash on my palm for a few days, it's red and hurts when I touch it",
+      image: imageURI,
+      patientId: users[0]._id,
+      numOpinions: 0,
+      opinions: [
+        {
+          "doctor": {
+            '_id': doctors[0]._id
+          },
+          "text": "You are looking pretty rough, friend"
+        }
+      ]
     }
   ];
   for (let i = 0; i < caseFiles.length; i++) {
