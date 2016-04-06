@@ -21,7 +21,7 @@ Login = React.createClass({
     e.preventDefault();
     var email = this.refs.email.getValue();
     var password = this.refs.password.getValue();
-    Meteor.loginWithPassword(email, password, FlowRouter.go('CaseFileList'));
+    Meteor.loginWithPassword(email, password, FlowRouter.go('CaseFilesList'));
   },
   onRegisterTap(e){
     e.preventDefault();
