@@ -40,7 +40,7 @@ DoctorInfo = React.createClass({
         onRequestClose={this.handleRequestClose}
       >
         <div style={styles.panel}>
-          <FloatingActionButton iconClassName="fa fa-phone" style={styles.button}/>
+          <FloatingActionButton iconClassName="fa fa-file" style={styles.button}/>
           <FloatingActionButton iconClassName="fa fa-video-camera" style={styles.button}/>
           <FloatingActionButton iconClassName="fa fa-mobile" style={styles.button}/>
         </div>
