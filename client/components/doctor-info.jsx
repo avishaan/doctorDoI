@@ -20,6 +20,12 @@ DoctorInfo = React.createClass({
     { text: 'Cancel' },
     { text: 'Ok', onTouchTap: this.onDialogSubmit, ref: 'submit' }
   ],
+  getInitialState() {
+    // this will set init state, used only for UI updates
+    return {
+      opinionText: 'Click above for immediate opinion'
+    };
+  },
   onDialogSubmit() {
     console.log('dialog submitted');
   },
@@ -48,7 +54,7 @@ DoctorInfo = React.createClass({
           <FloatingActionButton iconClassName="fa fa-mobile" style={styles.button}/>
         </div>
         <br/>
-          {this.props.bodyText}
+          {this.state.opinionText}
 
       </Dialog>
     );
