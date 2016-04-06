@@ -16,8 +16,14 @@ const styles = {
   textfield: {
     marginLeft: 20
   },
+  buttonContainer: {
+    'display': 'flex'
+  },
   button: {
     margin: "0, auto",
+    'paddingLeft': '15px',
+    'paddingRight': '15px',
+    'width': '50%',
     display: "block"
   },
   image: {
@@ -82,11 +88,18 @@ CaseFileView = React.createClass({
             fullWidth={true}
             rows={3}
           />
-          <RaisedButton label="Submit Opinion"
-            primary={true}
-            style={styles.button}
-            onTouchTap={this.onSubmitTap}
-          />
+          <div style={styles.buttonContainer}>
+            <RaisedButton label="Submit Opinion"
+              primary={true}
+              style={styles.button}
+              onTouchTap={this.onSubmitTap}
+            />
+            <RaisedButton label="Submit Opinion"
+              primary={true}
+              style={styles.button}
+              onTouchTap={this.onSubmitTap}
+            />
+          </div>
         </div>
       );
     }
