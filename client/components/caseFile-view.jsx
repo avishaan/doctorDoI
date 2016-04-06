@@ -111,6 +111,13 @@ CaseFileView = React.createClass({
       );
     }
   },
+  opinionSummary(shouldSeeDoctor){
+    if (shouldSeeDoctor) {
+      return "It's my professional opinion that you see a Doctor immediately";
+    } else {
+      return "Everything is ok, there is no need to see a doctor at this time";
+    }
+  },
   renderOpinions(){
     // doctors shouldn't see other's opinions
     if (!Roles.userIsInRole(Meteor.userId(), 'doctor') &&
@@ -129,8 +136,7 @@ CaseFileView = React.createClass({
           <ListDivider />
           <ListItem 
             onTouchTap={() => this.onOpinionTap(opinion)}
-            secondaryText={opinion.text}
-            secondaryTextLines={2}
+            primaryText={this.opinionSummary(opinion.shouldSeeDoctor)}
             leftAvatar={
             <Avatar 
               style={avatarStyle}
