@@ -34,6 +34,7 @@ DoctorInfo = React.createClass({
   },
   onMessageTap(){
     console.log("message button tapped");
+    this.setState({opinionText: this.props.bodyText});
   },
   render() {
     console.log('dialog render');
