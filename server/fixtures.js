@@ -2,85 +2,106 @@ var imageURI = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z
 
 let chance = new Chance();
 
-if (Doctors.find().count() === 0) {
-  console.log("seeding doctors");
-  const doctors = [
+if (Meteor.users.find().count() === 0) {
+  console.log("seeding users");
+  const users = [
     {
       name: 'Jamison Feramisco',
       background: 'Cardiac Surgeon for 10 years',
-      image: '/imgs/1.png'
+      email: 'dr1@gmail.com',
+      password: 'password',
+      roles: ['doctor']
     }, {
       name: 'Kristy Swanson',
       background: 'Pediatric Surgeon for 3 years',
-      image: '/imgs/2.png'
+      email: 'dr2@gmail.com',
+      password: 'password',
+      roles: ['doctor']
     }, {
       name: 'Bruce French',
       background: 'Orthopedic Surgeon for 5 years',
-      image: '/imgs/3.png'
+      email: 'dr3@gmail.com',
+      password: 'password',
+      roles: ['doctor']
     }, {
       name: 'Neil Phillip',
       background: 'Radiology Surgeon for 7 years',
-      image: '/imgs/4.png'
+      email: 'dr4@gmail.com',
+      password: 'password',
+      roles: ['doctor']
     }, {
       name: 'Ervin Mathis',
       background: 'Emergency Medicine for 2 years',
-      image: '/imgs/5.png'
+      email: 'dr5@gmail.com',
+      password: 'password',
+      roles: ['doctor']
+    }, {
+      name: 'Avishaan',
+      background: 'Professional football player and programmer',
+      email: 'user1@gmail.com',
+      password: 'password',
+      roles: ['patient']
+    }, {
+      name: 'Jack',
+      background: 'Medical student and business person',
+      email: 'user2@gmail.com',
+      password: 'password',
+      roles: ['patient']
     }
   ];
 
-  for (let i = 0; i < doctors.length; i++) {
-    Doctors.insert(doctors[i]);
-  }
+  //for (let i = 0; i < doctors.length; i++) {
+  users.forEach(function(user){
+    var id = Accounts.createUser({
+      email: user.email,
+      password: user.password,
+      profile: {
+        background: user.background,
+        name: user.name
+      }
+    });
+    // add appropriate role to created user if applicable
+    if (user.roles) {
+      Roles.addUsersToRoles(id, user.roles);
+    }
+  });
+
+  //}
 }
 
 if (CaseFiles.find().count() === 0) {
   console.log("seeding caseFiles");
-  let doctors = Doctors.find().fetch();
+  let users = Meteor.users.find({'roles': { $in: ['patient']}}).fetch();
+  let doctors = Meteor.users.find({'roles': { $in: ['doctor']}}).fetch();
   const caseFiles = [
     {
-      doctor: {
-        _id: doctors[0]._id,
-        name: doctors[0].name,
-        background: doctors[0].background,
-        image: doctors[0].image
-      },
-      confidence: chance.integer({min: 10, max: 90}),
-      description: chance.paragraph({sentences: 2}),
-      image: '/imgs/1.png',
-      numOpinions: 1
+      description: "I have had a rash on my palm for a few days, it's red and hurts when I touch it",
+      image: imageURI,
+      patientId: users[0]._id,
+      numOpinions: 0,
+      opinions: [
+        {
+          "doctor": {
+            '_id': doctors[0]._id
+          },
+          "text": "You are looking pretty rough, friend",
+          'shouldSeeDoctor': true
+        }
+      ]
     }, {
-      doctor: {
-        _id: doctors[1]._id,
-        name: doctors[1].name,
-        background: doctors[1].background,
-        image: doctors[1].image
-      },
-      confidence: chance.integer({min: 10, max: 90}),
-      description: chance.paragraph({sentences: 2}),
-      image: '/imgs/2.png',
-      numOpinions: 1
-    }, {
-      doctor: {
-        _id: doctors[2]._id,
-        name: doctors[2].name,
-        background: doctors[2].background,
-        image: doctors[2].image
-      },
-      confidence: chance.integer({min: 10, max: 90}),
-      description: chance.paragraph({sentences: 2}),
-      image: '/imgs/3.png',
-      numOpinions: 0
-    }, {
-      doctor: {
-        _id: doctors[3]._id,
-        name: doctors[3].name,
-        background: doctors[3].background,
-        image: doctors[3].image
-      },
-      confidence: chance.integer({min: 10, max: 90}),
-      description: chance.paragraph({sentences: 2}),
-      image: imageURI, // the imageURI is at the bottom hiding
-      numOpinions: 0
+      description: "My arm has been hurting for about a week. I have tried ice and heat but it hasn't helped",
+      image: imageURI,
+      patientId: users[1]._id,
+      numOpinions: 0,
+      opinions: [
+        {
+          "doctor": {
+            '_id': doctors[1]._id
+          },
+          "text": "Everything looks ok, I wouldn't worry about it too much",
+          'shouldSeeDoctor': false
+        }
+      ]
     }
   ];
   for (let i = 0; i < caseFiles.length; i++) {
