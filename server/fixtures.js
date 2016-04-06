@@ -73,8 +73,6 @@ if (CaseFiles.find().count() === 0) {
   console.log("seeding caseFiles");
   let users = Meteor.users.find({'roles': { $in: ['patient']}}).fetch();
   let doctors = Meteor.users.find({'roles': { $in: ['doctor']}}).fetch();
-  console.log(doctors);
-  debugger;
   const caseFiles = [
     {
       description: "I have had a rash on my palm for a few days, it's red and hurts when I touch it",
@@ -86,7 +84,22 @@ if (CaseFiles.find().count() === 0) {
           "doctor": {
             '_id': doctors[0]._id
           },
-          "text": "You are looking pretty rough, friend"
+          "text": "You are looking pretty rough, friend",
+          'shouldSeeDoctor': true
+        }
+      ]
+    }, {
+      description: "My arm has been hurting for about a week. I have tried ice and heat but it hasn't helped",
+      image: imageURI,
+      patientId: users[1]._id,
+      numOpinions: 0,
+      opinions: [
+        {
+          "doctor": {
+            '_id': doctors[1]._id
+          },
+          "text": "Everything looks ok, I wouldn't worry about it too much",
+          'shouldSeeDoctor': false
         }
       ]
     }
