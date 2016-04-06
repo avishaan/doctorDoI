@@ -51,15 +51,16 @@ CaseFileView = React.createClass({
   },
   onSubmitTap(e) {
     console.log('submit opinion');
+    var shouldSeeDoctor = true;
     // set should see doctor based on which button was tapped
     if (e.target.textContent === 'Yes'){
-      this.setState({shouldSeeDoctor: true});
+      shouldSeeDoctor = true;
     } else {
-      this.setState({shouldSeeDoctor: false});
+      shouldSeeDoctor = false;
     }
     // check if doctor already made opinion
     // if doctor made opinion, perform update
-    Meteor.call('saveOpinion', this.props.oid, Meteor.userId(), this.state.opinion, this.state.shouldSeeDoctor);
+    Meteor.call('saveOpinion', this.props.oid, Meteor.userId(), this.state.opinion, shouldSeeDoctor);
 
     // attach doctor to opinion
     // route back to list of opinion
