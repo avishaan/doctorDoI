@@ -1,8 +1,6 @@
 # Doi?
 
 ## Video Demo
-https://www.youtube.com/watch?v=jd2KT-gUrd4
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/jd2KT-gUrd4/0.jpg)](https://www.youtube.com/watch?v=jd2KT-gUrd4)
 [![Doctor Do I?](https://i.gyazo.com/bf058b048106bfa37db9a4b2c686ab2e.gif)](https://youtu.be/v=jd2KT-gUrd4
  "Doctor Do I Demo")
 
