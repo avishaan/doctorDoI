@@ -20,11 +20,21 @@ DoctorInfo = React.createClass({
     { text: 'Cancel' },
     { text: 'Ok', onTouchTap: this.onDialogSubmit, ref: 'submit' }
   ],
+  getInitialState() {
+    // this will set init state, used only for UI updates
+    return {
+      opinionText: 'Click above for immediate opinion'
+    };
+  },
   onDialogSubmit() {
     console.log('dialog submitted');
   },
   handleRequestClose() {
     console.log('handleRequestClose');
+  },
+  onMessageTap(){
+    console.log("message button tapped");
+    this.setState({opinionText: this.props.bodyText});
   },
   render() {
     console.log('dialog render');
@@ -40,12 +50,12 @@ DoctorInfo = React.createClass({
         onRequestClose={this.handleRequestClose}
       >
         <div style={styles.panel}>
-          <FloatingActionButton iconClassName="fa fa-phone" style={styles.button}/>
+          <FloatingActionButton iconClassName="fa fa-file" style={styles.button} onTouchTap={this.onMessageTap}/>
           <FloatingActionButton iconClassName="fa fa-video-camera" style={styles.button}/>
           <FloatingActionButton iconClassName="fa fa-mobile" style={styles.button}/>
         </div>
         <br/>
-          {this.props.bodyText}
+          {this.state.opinionText}
 
       </Dialog>
     );

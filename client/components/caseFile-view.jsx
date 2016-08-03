@@ -16,8 +16,14 @@ const styles = {
   textfield: {
     marginLeft: 20
   },
+  buttonContainer: {
+    'display': 'flex'
+  },
   button: {
     margin: "0, auto",
+    'paddingLeft': '15px',
+    'paddingRight': '15px',
+    'width': '50%',
     display: "block"
   },
   image: {
@@ -43,11 +49,18 @@ CaseFileView = React.createClass({
       'showDialog': false
     };
   },
-  onSubmitTap() {
-    console.log('save opinion');
+  onSubmitTap(e) {
+    console.log('submit opinion');
+    var shouldSeeDoctor = true;
+    // set should see doctor based on which button was tapped
+    if (e.target.textContent === 'Yes'){
+      shouldSeeDoctor = true;
+    } else {
+      shouldSeeDoctor = false;
+    }
     // check if doctor already made opinion
     // if doctor made opinion, perform update
-    Meteor.call('saveOpinion', this.props.oid, Meteor.userId(), this.state.opinion);
+    Meteor.call('saveOpinion', this.props.oid, Meteor.userId(), this.state.opinion, shouldSeeDoctor);
 
     // attach doctor to opinion
     // route back to list of opinion
@@ -56,6 +69,7 @@ CaseFileView = React.createClass({
   onOpinionChange(e) {
     this.setState({opinion: e.target.value});
   },
+  // set the opinion information after being tapped to pass to dialog
   onOpinionTap(opinion) {
     // change prop state to open
     this.setState({dialogText: opinion.text});
@@ -82,13 +96,27 @@ CaseFileView = React.createClass({
             fullWidth={true}
             rows={3}
           />
-          <RaisedButton label="Submit Opinion"
-            primary={true}
-            style={styles.button}
-            onTouchTap={this.onSubmitTap}
-          />
+          <div style={styles.buttonContainer}>
+            <RaisedButton label="Yes"
+              primary={true}
+              style={styles.button}
+              onTouchTap={this.onSubmitTap}
+            />
+            <RaisedButton label="No"
+              primary={false}
+              style={styles.button}
+              onTouchTap={this.onSubmitTap}
+            />
+          </div>
         </div>
       );
+    }
+  },
+  opinionSummary(shouldSeeDoctor){
+    if (shouldSeeDoctor) {
+      return "It's my professional opinion that you see a Doctor immediately";
+    } else {
+      return "Everything is ok, there is no need to see a doctor at this time";
     }
   },
   renderOpinions(){
@@ -109,8 +137,7 @@ CaseFileView = React.createClass({
           <ListDivider />
           <ListItem 
             onTouchTap={() => this.onOpinionTap(opinion)}
-            secondaryText={opinion.text}
-            secondaryTextLines={2}
+            primaryText={this.opinionSummary(opinion.shouldSeeDoctor)}
             leftAvatar={
             <Avatar 
               style={avatarStyle}
@@ -136,6 +163,7 @@ CaseFileView = React.createClass({
           ref="doctorInfo"
           open={false}
           bodyText={this.state.dialogText}
+          opinionText={this.state.dialogText}
           titleText={this.state.dialogTitle}
         />
       </div>

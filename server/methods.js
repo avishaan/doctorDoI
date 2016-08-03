@@ -3,7 +3,7 @@ Meteor.methods({
     Roles.addUsersToRoles(userId, role);
     console.log("role: ", role, " added to userId ", userId);
   },
-  saveOpinion(caseId, docId, text){
+  saveOpinion(caseId, docId, text, shouldSeeDoctor){
     var prevOpinion = CaseFiles.findOne({ _id: caseId, "opinions.doctor._id": docId});
     if (prevOpinion){
       // update opinion
@@ -14,7 +14,8 @@ Meteor.methods({
         }, {
           $set: {"opinions.$": {
             doctor: {_id: docId},
-            text: text
+            text: text,
+            'shouldSeeDoctor': shouldSeeDoctor
           } }
         }
       );
@@ -29,7 +30,8 @@ Meteor.methods({
           $addToSet: {
             opinions: {
               doctor: {_id: docId},
-              text: text
+              text: text,
+            'shouldSeeDoctor': shouldSeeDoctor
             }
           }}
       );
